@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
+import './tracks.styles.css'
 
 export default function Tracks() {
     const { state } = useLocation();
@@ -41,14 +42,22 @@ export default function Tracks() {
                 <button id="medium_term" onClick={handleGetTopTracks}>Get Top Tracks (Medium)</button>
                 <button id="long_term" onClick={handleGetTopTracks}>Get Top Tracks (Long)</button>
             </div>
-            {topTracks && (
-                topTracks.map((track) => (
-                    <div key={track.id} className='track'>
-                        <img src={track.album.images[0].url} />
-                        <p>{track.name}</p>
-                    </div>
-                ))
-            )}
+            <div className='track-container'>
+                {topTracks && (
+                    topTracks.map((track) => (
+                        <div key={track.id} className='track'>
+                            <a href={track.external_urls.spotify}>
+                                <img src={track.album.images[0].url} className='album-image'/>
+                            </a>
+                            <div className='track-info'>
+                                <a href={track.uri} className='track-name'>{track.name}</a>
+                                <a href={track.artists[0].uri} className='track-artist'>{track.artists[0].name}</a>
+                                {/* <a href={track.album.uri} className='track-album'>{track.album.name}</a> */}
+                            </div>
+                        </div>
+                    ))
+                )}
+            </div>
         </div>
       )
 }

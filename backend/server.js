@@ -12,7 +12,7 @@ const redirect_uri = 'http://localhost:3000/callback';
 app.use(cors());
 
 app.get('/login', (req, res) => {
-    const scope = 'user-library-read playlist-read-private user-top-read user-read-playback-state user-modify-playback-state';
+    const scope = 'user-top-read user-read-playback-state user-modify-playback-state';
     const auth_query_parameters = querystring.stringify({
         response_type: 'code',
         client_id: client_id,
