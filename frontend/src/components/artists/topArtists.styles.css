@@ -2,29 +2,40 @@
     box-shadow: inset 0 0 5px #000;
 }
 
-.track-container {
+.artists-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.track {
+.artist {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-.track-info {
+.artist-info {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.track-name {
+.artist-name {
     font-weight: 700;
 }
 
-.album-image {
+.artist-image-container {
     height: 128px;
+    width: 128px;
+    display: flex;
+    justify-content: center;
+    /* background-color: black; */
+}
+
+.artist-image {
+    /* height: 128px;
+    width: 128px; */
+    height: 100%;
+    width: 100%;
 }
 
 a {

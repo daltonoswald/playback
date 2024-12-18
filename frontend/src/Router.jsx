@@ -1,7 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import Callback from './components/login/Callback';
-import Tracks from './components/tracks/Tracks';
+import TopTracks from './components/tracks/TopTracks';
+import TopArtists from './components/artists/TopArtists';
 
 export default function Router() {
     const router = createBrowserRouter([
@@ -16,7 +17,11 @@ export default function Router() {
         },
         {
             path: '/my-top-tracks',
-            element: <Tracks />
+            element: <TopTracks />
+        },
+        {
+            path: '/my-top-artists',
+            element: <TopArtists />
         }
     ])
     return <RouterProvider router={router} />

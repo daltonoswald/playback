@@ -26,13 +26,6 @@ function App() {
     })
   }
 
-  const handleGetTopTracks = (e) => {
-    spotifyApi.setAccessToken(spotifyToken);
-    spotifyApi.getMyTopTracks({time_range: e.target.id}).then((tracks) => {
-      console.log(tracks)
-    })
-  }
-
   return (
     <>
       <div className='hi'>
@@ -54,6 +47,7 @@ function App() {
               }
             }}>Get My Top Tracks</Link> */}
             <Link to='/my-top-tracks' state={{spotifyToken: spotifyToken, user: user, isLoggedIn: isLoggedIn}}>Get My Top Tracks</Link>
+            <Link to='/my-top-artists' state={{spotifyToken: spotifyToken, user: user, isLoggedIn: isLoggedIn}}>Get My Top Artists</Link>
           </>
         )}
 
