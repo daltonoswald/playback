@@ -38,14 +38,6 @@ function App() {
             <p>{user.display_name}</p>
             <img src={user.images[0].url} />
             <button onClick={handleGetTopArtists}>Get Top Artists</button>
-            {/* <Link to={{
-              pathname: '/my-top-tracks',
-              state: {
-                spotifyToken: spotifyToken,
-                user: user,
-                isLoggedIn: isLoggedIn
-              }
-            }}>Get My Top Tracks</Link> */}
             <Link to='/my-top-tracks' state={{spotifyToken: spotifyToken, user: user, isLoggedIn: isLoggedIn}}>Get My Top Tracks</Link>
             <Link to='/my-top-artists' state={{spotifyToken: spotifyToken, user: user, isLoggedIn: isLoggedIn}}>Get My Top Artists</Link>
           </>

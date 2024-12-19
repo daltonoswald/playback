@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
 import './tracks.styles.css'
 import Nav from '../nav/Nav';
+import playIcon from '../../assets/icons/play-icon.svg'
 
 export default function TopTracks() {
     const { state } = useLocation();
@@ -37,6 +38,10 @@ export default function TopTracks() {
         }
     }
 
+    const handlePlayTrack = (e) => {
+        spotifyApi.play({uris: [`spotify:track:${e.target.parentElement.parentElement.id}`]})
+    }
+
 
       return (
         <>
@@ -50,13 +55,14 @@ export default function TopTracks() {
                 <div className='track-container'>
                     {topTracks && (
                         topTracks.map((track) => (
-                            <div key={track.id} className='track'>
+                            <div key={track.id} className='track' id={track.id}>
                                 <a href={track.external_urls.spotify}>
                                     <img src={track.album.images[0].url} className='album-image'/>
                                 </a>
                                 <div className='track-info'>
                                     <a href={track.uri} className='track-name'>{track.name}</a>
                                     <a href={track.artists[0].uri} className='track-artist'>{track.artists[0].name}</a>
+                                    <img src={playIcon} className='play-icon' onClick={handlePlayTrack} />
                                     {/* <a href={track.album.uri} className='track-album'>{track.album.name}</a> */}
                                 </div>
                             </div>

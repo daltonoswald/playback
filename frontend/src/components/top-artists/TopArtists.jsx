@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
 import './topArtists.styles.css'
 import Nav from '../nav/Nav';
+import playIcon from  '../../assets/icons/play-icon.svg'
 
 export default function TopArtists() {
     const { state } = useLocation();
@@ -62,8 +63,9 @@ export default function TopArtists() {
                                     </div>
                                 </a>
                                 <div className='artist-info'>
-                                    <a href={artist.uri} className='artist-name'>{artist.name}</a>
-                                    <button onClick={handlePlayArtist}>Play</button>
+                                    {/* <a href={artist.uri} className='artist-name'>{artist.name}</a> */}
+                                    <Link to={`/artist/${artist.id}`} className='artist-name'>{artist.name}</Link>
+                                    <img src={playIcon} className='play-icon' onClick={handlePlayArtist} />
                                 </div>
                             </div>
                         ))
