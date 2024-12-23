@@ -64,7 +64,7 @@ export default function TopArtists() {
                                 </a>
                                 <div className='artist-info'>
                                     {/* <a href={artist.uri} className='artist-name'>{artist.name}</a> */}
-                                    <Link to={`/artist/${artist.id}`} className='artist-name'>{artist.name}</Link>
+                                    <Link to={`/artist/${artist.id}`} className='artist-name' state={state} >{artist.name}</Link>
                                     <img src={playIcon} className='play-icon' onClick={handlePlayArtist} />
                                 </div>
                             </div>
