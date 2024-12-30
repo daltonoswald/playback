@@ -36,8 +36,3 @@ a:visited {
     text-decoration: none;
     color: black;
 }
-
-.play-icon {
-    height: 36px;
-    filter: invert(0%) sepia(2%) saturate(7%) hue-rotate(21deg) brightness(94%) contrast(104%);
-}

@@ -1,0 +1,20 @@
+.tracklist-track {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+}
+
+.tracklist-title {
+    width: 90%;
+}
+
+.tracklist-index,
+.tracklist-duration {
+    width: 5%
+}
+
+.tracklist-play-icon {
+    height: 16px;
+    filter: invert(0%) sepia(2%) saturate(7%) hue-rotate(21deg) brightness(94%) contrast(104%);
+    cursor: pointer;
+}

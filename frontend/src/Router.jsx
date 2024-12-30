@@ -4,6 +4,7 @@ import Callback from './components/login/Callback';
 import TopTracks from './components/top-tracks/TopTracks';
 import TopArtists from './components/top-artists/TopArtists';
 import Artist from './components/artist/Artist';
+import Album from './components/album/Album';
 
 export default function Router() {
     const router = createBrowserRouter([
@@ -27,6 +28,10 @@ export default function Router() {
         {
             path: '/artist/:artistid',
             element: <Artist />
+        },
+        {
+            path: '/album/:albumid',
+            element: <Album />
         }
     ])
     return <RouterProvider router={router} />
