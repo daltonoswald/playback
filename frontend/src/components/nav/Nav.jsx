@@ -22,6 +22,7 @@ export default function Nav() {
         <div className='nav'>
               <Link to='/my-top-tracks' state={{spotifyToken: spotifyToken, user: user, isLoggedIn: isLoggedIn}}>Top Tracks</Link>
               <Link to='/my-top-artists' state={{spotifyToken: spotifyToken, user: user, isLoggedIn: isLoggedIn}}>Top Artists</Link>
+              <Link to='/search' state={{spotifyToken: spotifyToken, user: user, isLoggedIn: isLoggedIn}}>Search</Link>
         </div>
   
       </>

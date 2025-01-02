@@ -5,6 +5,7 @@ import TopTracks from './components/top-tracks/TopTracks';
 import TopArtists from './components/top-artists/TopArtists';
 import Artist from './components/artist/Artist';
 import Album from './components/album/Album';
+import Search from './components/search/Search';
 
 export default function Router() {
     const router = createBrowserRouter([
@@ -24,6 +25,10 @@ export default function Router() {
         {
             path: '/my-top-artists',
             element: <TopArtists />
+        },
+        {
+            path: '/search',
+            element: <Search />
         },
         {
             path: '/artist/:artistid',
