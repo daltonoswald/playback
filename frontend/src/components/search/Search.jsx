@@ -41,7 +41,7 @@ export default function Search () {
                         <button className='search-button' type='submit'>Search</button>
                     </form>
                 </div>
-                <div className='track-results'>Tracks:
+                <div className='track-results'>
                     {tracks && (
                         tracks.map(track => (
                             <div className='track-result' key={track.id}>
@@ -56,11 +56,14 @@ export default function Search () {
                         ))
                     )}
                 </div>
-                <div className='artist-results'>Artists:
+                <div className='artist-results'>
                     {artists && (
                         artists.map(artist => (
                             <div className='artist-result' key={artist.id}>
-                                <img src={artist.images[0].url} className='search-result-image' />
+                                {artist.images.length >= 1 && (
+                                    <img src={artist.images[0].url} className='search-result-image' />
+                                )}
+                                {/* <img src={artist.images[0].url} className='search-result-image' /> */}
                                 <div className='result-details'>
                                     <Link to={`/artist/${artist.id}`} key={artist.id} state={state} >{artist.name}</Link>
                                 </div>
@@ -68,7 +71,7 @@ export default function Search () {
                         ))
                     )}
                 </div>
-                <div className='album-results'>Albums:
+                <div className='album-results'>
                     {albums && (
                         albums.map(album => (
                             <div className='album-result' key={album.id}>
