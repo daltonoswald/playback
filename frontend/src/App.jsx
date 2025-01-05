@@ -40,6 +40,7 @@ function App() {
             <button onClick={handleGetTopArtists}>Get Top Artists</button>
             <Link to='/my-top-tracks' state={{spotifyToken: spotifyToken, user: user, isLoggedIn: isLoggedIn}}>Get My Top Tracks</Link>
             <Link to='/my-top-artists' state={{spotifyToken: spotifyToken, user: user, isLoggedIn: isLoggedIn}}>Get My Top Artists</Link>
+            <Link to='/search' state={{spotifyToken: spotifyToken, user: user, isLoggedIn: isLoggedIn}}>Search</Link>
           </>
         )}
 

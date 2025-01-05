@@ -5,7 +5,9 @@
     align-items: center;
 }
 
-.track-results {
+.track-results,
+.artist-results,
+.album-results {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin: 0 auto;
@@ -19,4 +21,15 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+.result-details > p {
+    margin: 0;
+}
+
+.track-results,
+.artist-results,
+.album-results {
+
+    border: 3px solid black;
 }

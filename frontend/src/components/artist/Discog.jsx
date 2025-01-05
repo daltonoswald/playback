@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
 import playIcon from  '../../assets/icons/play-icon.svg'
+import albumIcon from  '../../assets/icons/album.svg'
 
 export default function Discog({discography, albums, state}) {
     const [discographySettings, setDiscographySettings] = useState('albums');
@@ -48,7 +49,12 @@ export default function Discog({discography, albums, state}) {
             discography.map((album) => (
                 <div className='album' key={album.id} id={album.id}>
                     <div className='artist-album-image-container'>
-                        <img src={album.images[0].url} className='artist-album-image'/>
+                        {album.images.length >= 1 && (
+                            <img src={album.images[0].url} className='artist-album-image'/>    
+                        )}
+                        {album.images.length === 0 && (
+                            <img src={albumIcon} className='artist-album-image'/>    
+                        )}
                     </div>
                     <div className='artist-album-details'>
                     <Link to={`/album/${album.id}`} className='album-title' state={state}>{album.name}</Link>

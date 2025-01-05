@@ -4,6 +4,7 @@ import SpotifyWebApi from 'spotify-web-api-js'
 import './tracks.styles.css'
 import Nav from '../nav/Nav';
 import playIcon from '../../assets/icons/play-icon.svg'
+import albumIcon from '../../assets/icons/album.svg'
 
 export default function TopTracks() {
     const { state } = useLocation();
@@ -57,14 +58,17 @@ export default function TopTracks() {
                         topTracks.map((track) => (
                             <div key={track.id} className='track' id={track.id}>
                                 <a href={track.external_urls.spotify}>
-                                    <img src={track.album.images[0].url} className='album-image'/>
+                                    {track.album.images.length >= 1 && (
+                                        <img src={track.album.images[0].url} className='album-image'/>   
+                                    )}
+                                    {track.album.images.length === 0 && (
+                                        <img src={albumIcon} className='album-image'/>   
+                                    )}
                                 </a>
                                 <div className='track-info'>
                                     <a href={track.uri} className='track-name'>{track.name}</a>
-                                    {/* <a href={track.artists[0].uri} className='track-artist'>{track.artists[0].name}</a> */}
                                     <Link to={`/artist/${track.artists[0].id}`} className='track-artist' state={state} >{track.artists[0].name}</Link>
                                     <img src={playIcon} className='play-icon' onClick={handlePlayTrack} />
-                                    {/* <a href={track.album.uri} className='track-album'>{track.album.name}</a> */}
                                 </div>
                             </div>
                         ))

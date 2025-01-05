@@ -4,6 +4,7 @@ import SpotifyWebApi from 'spotify-web-api-js'
 import './topArtists.styles.css'
 import Nav from '../nav/Nav';
 import playIcon from  '../../assets/icons/play-icon.svg'
+import personIcon from '../../assets/icons/person.svg'
 
 export default function TopArtists() {
     const { state } = useLocation();
@@ -57,9 +58,13 @@ export default function TopArtists() {
                         topArtists.map((artist) => (
                             <div key={artist.id} className='artist' id={artist.id}>
                                 <a href={artist.external_urls.spotify}>
-                                    {/* <img src={artist.images[0].url} className='album-image'/> */}
                                     <div className='artist-image-container'>
-                                        <img src={artist.images[0].url} className='artist-image'/>
+                                        {artist.images.length >= 1 && (
+                                            <img src={artist.images[0].url} className='artist-image'/>  
+                                        )}
+                                        {artist.images.length === 0 && (
+                                            <img src={personIcon} className='artist-image'/> 
+                                        )} 
                                     </div>
                                 </a>
                                 <div className='artist-info'>

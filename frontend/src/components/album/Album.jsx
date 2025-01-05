@@ -5,6 +5,7 @@ import { format } from 'date-fns'
 import SpotifyWebApi from 'spotify-web-api-js'
 import Nav from '../nav/Nav';
 import Tracklist from '../tracklist/Tracklist';
+import albumIcon from '../../assets/icons/album.svg'
 
 export default function Album() {
     const [isLoading, setIsLoading] = useState(true);
@@ -44,7 +45,13 @@ export default function Album() {
             <div className='content'>
                 <div className='album-details'>
                     <div className='album-details-top'>
-                        <img src={album.images[0].url} className='album-details-image' />
+                        {album.images.length >= 0 && (
+                           <img src={album.images[0].url} className='album-details-image' /> 
+                        )}
+                        {album.images.length === 0 && (
+                           <img src={albumIcon} className='album-details-image' /> 
+                        )}
+                        
                         <div>{album.name}</div>
                     </div>
                     <div className='album-details-bottom'>

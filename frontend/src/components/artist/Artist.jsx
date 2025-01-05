@@ -4,7 +4,8 @@ import SpotifyWebApi from 'spotify-web-api-js'
 import Nav from '../nav/Nav';
 import './artist.styles.css';
 import Discog from './Discog';
-import Tracklist from '../tracklist/Tracklist';
+import personIcon from '../../assets/icons/person.svg'
+import albumIcon from '../../assets/icons/album.svg'
 
 export default function Artist() {
     const [isLoading, setIsLoading] = useState(true);
@@ -62,7 +63,12 @@ export default function Artist() {
         {!isLoading && (
         <div className='content'>
             <div className='artist-details'>
-                <img src={artist.images[0].url} className='artist-details-image' />
+                {artist.images.length >= 1 && (
+                    <img src={artist.images[0].url} className='artist-details-image' />
+                )}
+                {artist.images.length === 0 && (
+                    <img src={personIcon} className='artist-details-image' />
+                )}
                 <div>{artist.name}</div>
             </div>
             <Discog discography={discography} albums={albums} state={state} />
@@ -71,7 +77,12 @@ export default function Artist() {
                     topTracks.map((track) => (
                         <div className='artist-track' key={track.id} id={track.id}>
                             <div className='artist-track-image-container'>
-                                <img src={track.album.images[0].url} className='artist-track-image'/>
+                                {track.album.images.length >= 1 && (
+                                    <img src={track.album.images[0].url} className='artist-track-image'/>   
+                                )}
+                                {track.album.images.length === 0 && (
+                                    <img src={albumIcon} className='artist-track-image'/>
+                                )}
                             </div>
                             <div className='artist-track-details'>
                                 <div className='track-title'>{track.name}</div>
