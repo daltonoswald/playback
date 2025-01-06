@@ -10,13 +10,15 @@
 .track {
     display: flex;
     align-items: center;
-    gap: 20px;
 }
 
 .track-info {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+    text-align: center;
 }
 
 .track-name {

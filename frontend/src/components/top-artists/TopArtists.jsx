@@ -43,6 +43,11 @@ export default function TopArtists() {
         spotifyApi.play({context_uri: `spotify:artist:${e.target.parentElement.parentElement.id}`})
     }
 
+    const navigateToArtist = (e) => {
+        console.log(e.target.id)
+        navigate(`/artist/${e.target.id}`, { state: state })
+    }
+
 
       return (
         <>
@@ -57,16 +62,14 @@ export default function TopArtists() {
                     {topArtists && (
                         topArtists.map((artist) => (
                             <div key={artist.id} className='artist' id={artist.id}>
-                                <a href={artist.external_urls.spotify}>
-                                    <div className='artist-image-container'>
+                                    <div className='artist-image-container' id={artist.id} onClick={navigateToArtist}>
                                         {artist.images.length >= 1 && (
-                                            <img src={artist.images[0].url} className='artist-image'/>  
+                                            <img src={artist.images[0].url} className='artist-image' id={artist.id}/>  
                                         )}
                                         {artist.images.length === 0 && (
-                                            <img src={personIcon} className='artist-image'/> 
+                                            <img src={personIcon} className='artist-image' id={artist.id}/> 
                                         )} 
                                     </div>
-                                </a>
                                 <div className='artist-info'>
                                     {/* <a href={artist.uri} className='artist-name'>{artist.name}</a> */}
                                     <Link to={`/artist/${artist.id}`} className='artist-name' state={state} >{artist.name}</Link>
