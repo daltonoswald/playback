@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
 import Nav from '../nav/Nav';
 import './search.styles.css';
@@ -14,6 +14,14 @@ export default function Search () {
     const { state } = useLocation();
     console.log(state);
     const spotifyApi = new SpotifyWebApi();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        console.log(state);
+        if (!state) {
+          navigate('/');
+        }
+      },[state])
 
     const handleSearch = (e) => {
         e.preventDefault();

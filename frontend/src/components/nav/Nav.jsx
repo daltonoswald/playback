@@ -12,7 +12,7 @@ export default function Nav() {
         setSpotifyToken(state.spotifyToken)
         setUser(state.user);
         setIsLoggedIn(true);
-        console.log(state.spotifyToken);
+        console.log(state);
       }
     },[state])
   

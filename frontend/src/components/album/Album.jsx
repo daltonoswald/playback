@@ -6,6 +6,7 @@ import SpotifyWebApi from 'spotify-web-api-js'
 import Nav from '../nav/Nav';
 import Tracklist from '../tracklist/Tracklist';
 import albumIcon from '../../assets/icons/album.svg'
+import './album.styles.css'
 
 export default function Album() {
     const [isLoading, setIsLoading] = useState(true);

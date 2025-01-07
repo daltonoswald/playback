@@ -12,7 +12,7 @@
 .artist-albums {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 50%;
+    width: 75%;
     margin: 0 auto;
     gap: 8px;
 }

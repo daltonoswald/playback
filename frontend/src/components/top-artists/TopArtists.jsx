@@ -62,14 +62,12 @@ export default function TopArtists() {
                     {topArtists && (
                         topArtists.map((artist) => (
                             <div key={artist.id} className='artist' id={artist.id}>
-                                    <div className='artist-image-container' id={artist.id} onClick={navigateToArtist}>
-                                        {artist.images.length >= 1 && (
-                                            <img src={artist.images[0].url} className='artist-image' id={artist.id}/>  
-                                        )}
-                                        {artist.images.length === 0 && (
-                                            <img src={personIcon} className='artist-image' id={artist.id}/> 
-                                        )} 
-                                    </div>
+                                {artist.images.length >= 1 && (
+                                    <div className='artist-image-container' id={artist.id} onClick={navigateToArtist} style={{backgroundImage: 'url(' + artist.images[0].url + ')',}} />
+                                )}
+                                {artist.images.length === 0 && (
+                                    <img className='artist-image-container' id={artist.id} onClick={navigateToArtist} src={personIcon} />
+                                )}
                                 <div className='artist-info'>
                                     {/* <a href={artist.uri} className='artist-name'>{artist.name}</a> */}
                                     <Link to={`/artist/${artist.id}`} className='artist-name' state={state} >{artist.name}</Link>

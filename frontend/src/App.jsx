@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react'
 import { loginEndpoint } from './components/login/loginEndpoint'
 import { useLocation, Link } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
+import Nav from './components/nav/Nav';
 
 function App() {
   const [spotifyToken, setSpotifyToken] = useState('');
   const [user, setUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { state } = useLocation();
+  console.log(state);
   const spotifyApi = new SpotifyWebApi();
 
   useEffect(() => {
@@ -15,7 +17,6 @@ function App() {
       setSpotifyToken(state.spotifyToken)
       setUser(state.user);
       setIsLoggedIn(true);
-      console.log(state.spotifyToken);
     }
   },[state])
 
@@ -30,10 +31,14 @@ function App() {
     <>
       <div className='hi'>
         {!isLoggedIn && (
-          <a href={loginEndpoint}>Log In</a>
+          <>
+            <a href={loginEndpoint}>Log In</a>
+            
+          </>
         )}
         {(spotifyToken && user) && (
           <>
+            <Nav />
             <p>{spotifyToken}</p>
             <p>{user.display_name}</p>
             <img src={user.images[0].url} />

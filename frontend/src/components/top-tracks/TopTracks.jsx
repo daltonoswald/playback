@@ -43,6 +43,11 @@ export default function TopTracks() {
         spotifyApi.play({uris: [`spotify:track:${e.target.parentElement.parentElement.id}`]})
     }
 
+    const navigateToAlbum = (e) => {
+        console.log(e.target.id)
+        navigate(`/album/${e.target.id}`, { state: state })
+    }
+
 
       return (
         <>
@@ -57,14 +62,14 @@ export default function TopTracks() {
                     {topTracks && (
                         topTracks.map((track) => (
                             <div key={track.id} className='track' id={track.id}>
-                                <a href={track.external_urls.spotify}>
+                                <div className='album-image-container' id={track.album.id} onClick={navigateToAlbum}>
                                     {track.album.images.length >= 1 && (
-                                        <img src={track.album.images[0].url} className='album-image'/>   
+                                        <img src={track.album.images[0].url} className='album-image' id={track.album.id} />   
                                     )}
                                     {track.album.images.length === 0 && (
-                                        <img src={albumIcon} className='album-image'/>   
+                                        <img src={albumIcon} className='album-image' id={track.album.id} />   
                                     )}
-                                </a>
+                                </div>
                                 <div className='track-info'>
                                     <a href={track.uri} className='track-name'>{track.name}</a>
                                     <Link to={`/artist/${track.artists[0].id}`} className='track-artist' state={state} >{track.artists[0].name}</Link>
