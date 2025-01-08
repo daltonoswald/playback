@@ -16,7 +16,13 @@ export default function Discog({discography, albums, state}) {
     }
 
     const handlePlayAlbum = (e) => {
-        spotifyApi.play({context_uri: `spotify:album:${e.target.parentElement.parentElement.id}`})
+        spotifyApi.play(
+            {
+                context_uri: `spotify:album:${e.target.parentElement.parentElement.id}`,
+                offset: {
+                    position: 0
+                }    
+            })
     }
 
     return (

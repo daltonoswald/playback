@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useLocation, useNavigate, Link } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
 import Nav from '../nav/Nav';
 import './artist.styles.css';
 import Discog from './Discog';
 import personIcon from '../../assets/icons/person.svg'
 import albumIcon from '../../assets/icons/album.svg'
+import playIcon from '../../assets/icons/play-icon.svg'
 
 export default function Artist() {
     const [isLoading, setIsLoading] = useState(true);
@@ -55,6 +56,20 @@ export default function Artist() {
             setIsLoading(false);
         }
     },[artist, topTracks, albums])
+
+    const handlePlayTrack = (e) => {
+        console.log(e.target.id)
+        console.log(e.target.parentElement.parentElement.id)
+        spotifyApi.setAccessToken(state.spotifyToken);
+        spotifyApi.play(
+            {
+                context_uri: `spotify:album:${e.target.parentElement.id}`,
+                offset: {
+                    position: e.target.id - 1
+                }
+            
+            })
+    }
     
 
     return (
@@ -76,16 +91,18 @@ export default function Artist() {
                 {topTracks && (
                     topTracks.map((track) => (
                         <div className='artist-track' key={track.id} id={track.id}>
-                            <div className='artist-track-image-container'>
+                            <Link  to={`/album/${track.album.id}`} state={state} className='artist-track-image-container'>
                                 {track.album.images.length >= 1 && (
                                     <img src={track.album.images[0].url} className='artist-track-image'/>   
                                 )}
                                 {track.album.images.length === 0 && (
                                     <img src={albumIcon} className='artist-track-image'/>
                                 )}
-                            </div>
-                            <div className='artist-track-details'>
-                                <div className='track-title'>{track.name}</div>
+                            </Link>
+                            <div className='artist-track-details' id={track.album.id}>
+                                {/* <div className='track-title'>{track.name}</div> */}
+                                <Link to={`/album/${track.album.id}`} className='track-title' state={state}>{track.name}</Link>
+                                <img src={playIcon} onClick={handlePlayTrack} className='play-icon' id={track.track_number} />
                             </div>
                         </div>
                     ))

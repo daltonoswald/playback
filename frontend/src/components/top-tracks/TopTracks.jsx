@@ -71,7 +71,8 @@ export default function TopTracks() {
                                     )}
                                 </div>
                                 <div className='track-info'>
-                                    <a href={track.uri} className='track-name'>{track.name}</a>
+                                    {/* <a href={track.uri} className='track-name'>{track.name}</a> */}
+                                    <Link to={`/album/${track.album.id}`} className='track-name' state={state} >{track.name}</Link>
                                     <Link to={`/artist/${track.artists[0].id}`} className='track-artist' state={state} >{track.artists[0].name}</Link>
                                     <img src={playIcon} className='play-icon' onClick={handlePlayTrack} />
                                 </div>

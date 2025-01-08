@@ -1,3 +1,12 @@
+.discography-container {
+    display: flex;
+    width: 75%;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .artist-details {
     display: flex;
     flex-direction: column;
@@ -12,8 +21,8 @@
 .artist-albums {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 75%;
-    margin: 0 auto;
+    width: 100%;
+    margin: 10px auto;
     gap: 8px;
 }
 
@@ -22,7 +31,7 @@
     align-items: center;
     gap: 8px;
     width: 100%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     padding: 2px;
 }
 
@@ -45,8 +54,8 @@
 .artist-tracks {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    width: 50%;
-    margin: 0 auto;
+    width: 75%;
+    margin: 10px auto;
 }
 
 .artist-track {
@@ -57,4 +66,11 @@
 
 .artist-track-image {
     height: 48px;
+}
+
+.artist-track-details {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
 }

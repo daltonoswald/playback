@@ -1,4 +1,10 @@
 .nav {
+    display:flex;
+    width: 75vw;
+    margin: 0 auto;
+}
+
+.nav-middle {
     width: 25vw;
     display: flex;
     align-items: center;
