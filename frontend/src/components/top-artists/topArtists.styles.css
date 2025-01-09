@@ -11,6 +11,7 @@
 .artist {
     display: flex;
     align-items: center;
+    padding: 2px;
     /* gap: 20px; */
 }
 

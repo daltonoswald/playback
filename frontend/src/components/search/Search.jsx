@@ -72,7 +72,9 @@ export default function Search () {
                                 {tracks && (
                                     tracks.map(track => (
                                         <div className='track-result' key={track.id} id={track.id} onDoubleClick={handlePlayTrack}>
-                                            <img src={track.album.images[0].url} className='search-result-image' />
+                                            <Link to={`/album/${track.album.id}`} state={state}>
+                                                <img src={track.album.images[0].url} className='search-result-image' />
+                                            </Link>
                                             <div className='result-details'>
                                                 {/* <p>{track.name}</p> */}
                                                 <Link to={`/album/${track.album.id}`} state={state}>{track.name}</Link>
@@ -93,12 +95,15 @@ export default function Search () {
                                 {artists && (
                                     artists.map(artist => (
                                         <div className='artist-result' key={artist.id} id={artist.id} onDoubleClick={handlePlayArtist}>
-                                            {artist.images.length >= 1 && (
-                                                <img src={artist.images[0].url} className='search-result-image' />
-                                            )}
-                                            {artist.images.length === 0 && (
-                                                <img src={personIcon} className='search-result-image' />
-                                            )}
+                                            <Link to={`/artist/${artist.id}`} state={state}>
+                                                {artist.images.length >= 1 && (
+                                                        // <img src={artist.images[0].url} className='search-result-image' />
+                                                        <div className='search-result-image search-artist-image' style={{backgroundImage: 'url(' + artist.images[0].url + ')'}} />
+                                                )}
+                                                {artist.images.length === 0 && (
+                                                        <img src={personIcon} className='search-result-image' />
+                                                )}
+                                            </Link>
                                             <div className='result-details'>
                                                 <Link to={`/artist/${artist.id}`} key={artist.id} state={state} >{artist.name}</Link>
                                             </div>
@@ -113,12 +118,14 @@ export default function Search () {
                                 {albums && (
                                     albums.map(album => (
                                         <div className='album-result' key={album.id} id={album.id} onDoubleClick={handlePlayAlbum}>
+                                            <Link to={`/album/${album.id}`} state={state}>
                                             {album.images.length >= 1 && (
                                                 <img src={album.images[0].url} className='search-result-image' /> 
                                             )}
                                             {album.images.length === 0 && (
                                                 <img src={albumIcon} className='search-result-image' /> 
                                             )}
+                                            </Link>
                                             <div className='result-details'>
                                                 <Link to={`/album/${album.id}`} state={state} >{album.name}</Link>
                                                 <div className='result-album-artists'>

@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './App';
+import Homepage from './components/homepage/Homepage'
 import Callback from './components/login/Callback';
 import TopTracks from './components/top-tracks/TopTracks';
 import TopArtists from './components/top-artists/TopArtists';
@@ -11,7 +11,7 @@ export default function Router() {
     const router = createBrowserRouter([
         {
             path: '/',
-            element: <App />
+            element: <Homepage />
             // errorElement: <ErrorPage />
         },
         {

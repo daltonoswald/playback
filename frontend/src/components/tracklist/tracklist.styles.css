@@ -1,7 +1,9 @@
 .tracklist-track {
     display: flex;
     flex-direction: row;
-    width: 50%;
+    align-items: center;
+    width: 75%;
+    padding: 2px;
 }
 
 .tracklist-title {

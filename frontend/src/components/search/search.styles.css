@@ -1,8 +1,22 @@
+.search-tracks,
+.search-artists,
+.search-albums {
+    width: 100%;
+}
+
 .track-result,
 .artist-result,
 .album-result {
     display: flex;
     align-items: center;
+    gap: 8px;
+    padding: 2px;
+}
+
+.track-result > a,
+.artist-result > a,
+.album-result > a {
+    height: 48px;
 }
 
 .track-results,
@@ -11,10 +25,23 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin: 0 auto;
+    padding: 4px;
+    gap: 4px;
 }
 
 .search-result-image {
     width: 48px;
+}
+
+.search-artist-image {
+    height: 48px;
+    width: 48px;
+    min-width: 48px;
+    display: flex;
+    justify-content: center;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .result-details {

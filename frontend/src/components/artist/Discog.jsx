@@ -37,9 +37,9 @@ export default function Discog({discography, albums, state}) {
             {albums && (
                 albums.map((album) => (
                     <div className='album' key={album.id} id={album.id}>
-                        <div className='artist-album-image-container'>
+                        <Link to={`/album/${album.id}`} state={state} className='artist-album-image-container'>
                             <img src={album.images[0].url} className='artist-album-image'/>
-                        </div>
+                        </Link>
                         <div className='artist-album-details'>
                             <Link to={`/album/${album.id}`} className='album-title' state={state}>{album.name}</Link>
                             <img src={playIcon} className='play-icon' onClick={handlePlayAlbum} />
