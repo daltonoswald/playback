@@ -58,12 +58,10 @@ export default function Search () {
             <Nav />
             <div className='content'>
                 <h1>Search Page</h1>
-                <div className='search-container'>
-                    <form onSubmit={handleSearch}>
-                        <input type='text' id='search' name='search' />
-                        <button className='search-button' type='submit'>Search</button>
+                    <form onSubmit={handleSearch} className='search-form'>
+                        <input type='text' id='search' name='search' placeholder='What are you looking for?' />
+                        {/* <button className='search-button' type='submit'>Search</button> */}
                     </form>
-                </div>
                 {(tracks && artists && albums) && (
                     <>
                         <div className='search-tracks'>

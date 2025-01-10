@@ -5,3 +5,17 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.welcome-links {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}

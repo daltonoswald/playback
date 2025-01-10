@@ -27,7 +27,7 @@ export default function Discog({discography, albums, state}) {
 
     return (
         <div className='discography-container'>
-        <h1>Discography</h1>
+        {/* <h2>Discography</h2> */}
         <div className='discography-settings'>
             <button className={'discog-setting ' + (discographySettings === 'albums' ? 'active' : '')} id='albums' onClick={handleDiscogSettings}>Albums</button>
             <button className={'discog-setting ' + (discographySettings === 'eps' ? 'active' : '')} id='eps' onClick={handleDiscogSettings}>EPs & Singles</button>

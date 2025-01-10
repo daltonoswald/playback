@@ -1,3 +1,20 @@
+.search-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search-form > input {
+    width: 75%;
+    padding: 8px;
+    margin: 0 auto;
+}
+
+/* .search-button {
+    padding: 8px;
+    min-height: 0;
+} */
+
 .search-tracks,
 .search-artists,
 .search-albums {

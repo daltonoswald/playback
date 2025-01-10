@@ -19,13 +19,14 @@ export default function Nav() {
     return (
       <>
         <div className='nav'>
-          <div className='nav-left'>Statsify</div>
+          {/* <div className='nav-left'>Statsify</div> */}
+          <Link to='/' state={{spotifyToken: spotifyToken, user: user}} className='nav-left'>Statsify</Link>
           <div className='nav-middle'>
               <Link to='/my-top-tracks' state={{spotifyToken: spotifyToken, user: user}}>Top Tracks</Link>
               <Link to='/my-top-artists' state={{spotifyToken: spotifyToken, user: user}}>Top Artists</Link>
               <Link to='/search' state={{spotifyToken: spotifyToken, user: user}}>Search</Link>
           </div>
-              <Link to='/' state={ null } className='nav-right'>Logout</Link>
+              <Link to='/' state={ null } className='nav-right' reloadDocument >Logout</Link>
         </div>
   
       </>

@@ -53,10 +53,10 @@ export default function TopTracks() {
         <>
         <Nav />
             <div className='content'>
-                <div>Your tracks based on {term} length.
-                    <button id="short" onClick={handleGetTopTracks} className={(term === 'short' ? 'active' : '')} >Get Top Tracks (Short)</button>
-                    <button id="medium" onClick={handleGetTopTracks} className={(term === 'medium' ? 'active' : '')} >Get Top Tracks (Medium)</button>
-                    <button id="long" onClick={handleGetTopTracks} className={(term === 'long' ? 'active' : '')} >Get Top Tracks (Long)</button>
+                <div className='term-buttons'>
+                    <button id="short" onClick={handleGetTopTracks} className={(term === 'short' ? 'active' : '')}>Short</button>
+                    <button id="medium" onClick={handleGetTopTracks} className={(term === 'medium' ? 'active' : '')}>Medium</button>
+                    <button id="long" onClick={handleGetTopTracks} className={(term === 'long' ? 'active' : '')}>Long</button>
                 </div>
                 <div className='track-container'>
                     {topTracks && (

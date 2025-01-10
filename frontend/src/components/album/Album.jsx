@@ -53,7 +53,7 @@ export default function Album() {
                            <img src={albumIcon} className='album-details-image' /> 
                         )}
                         
-                        <div>{album.name}</div>
+                        <h1>{album.name}</h1>
                     </div>
                     <div className='album-details-bottom'>
                         <div className='album-deatils-artists-container'>

@@ -53,10 +53,10 @@ export default function TopArtists() {
         <>
             <Nav />
             <div className='content'>
-                <div>Your artists based on {term} length.
-                    <button id="short" onClick={handleGetTopArtists} className={(term === 'short' ? 'active' : '')} >Get Top Artists (Short)</button>
-                    <button id="medium" onClick={handleGetTopArtists} className={(term === 'medium' ? 'active' : '')} >Get Top Artists (Medium)</button>
-                    <button id="long" onClick={handleGetTopArtists} className={(term === 'long' ? 'active' : '')} >Get Top Artists (Long)</button>
+                <div className='term-buttons'>
+                    <button id="short" onClick={handleGetTopArtists} className={(term === 'short' ? 'active' : '')}>Short</button>
+                    <button id="medium" onClick={handleGetTopArtists} className={(term === 'medium' ? 'active' : '')}>Medium</button>
+                    <button id="long" onClick={handleGetTopArtists} className={(term === 'long' ? 'active' : '')}>Long</button>
                 </div>
                 <div className='artists-container'>
                     {topArtists && (
