@@ -4,6 +4,12 @@
     align-items: center;
 }
 
+.album-deatils-image {
+    height: 256px;
+    width: 256px;
+    min-width: 256px;
+}
+
 .album-tracklist {
     width: 75%;
     display: flex;

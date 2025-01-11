@@ -26,7 +26,7 @@ export default function Nav() {
               <Link to='/my-top-artists' state={{spotifyToken: spotifyToken, user: user}}>Top Artists</Link>
               <Link to='/search' state={{spotifyToken: spotifyToken, user: user}}>Search</Link>
           </div>
-              <Link to='/' state={ null } className='nav-right' reloadDocument >Logout</Link>
+              <Link to='/' className='nav-right' reloadDocument>Logout</Link>
         </div>
   
       </>

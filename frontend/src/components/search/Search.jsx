@@ -18,7 +18,7 @@ export default function Search () {
 
     useEffect(() => {
         console.log(state);
-        if (!state) {
+        if (!state || state.spotifyToken === '') {
           navigate('/');
         }
       },[state])

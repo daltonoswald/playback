@@ -15,7 +15,7 @@ export default function TopArtists() {
     const spotifyApi = new SpotifyWebApi();
   
     useEffect(() => {
-      if (!state) {
+      if (!state || state.spotifyToken === '') {
         navigate('/');
       } else {
         handleGetTopArtists();

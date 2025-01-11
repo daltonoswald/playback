@@ -15,7 +15,7 @@ export default function TopTracks() {
     const spotifyApi = new SpotifyWebApi();
   
     useEffect(() => {
-      if (!state) {
+      if (!state || state.spotifyToken === '') {
         navigate('/');
       } else {
         handleGetTopTracks();

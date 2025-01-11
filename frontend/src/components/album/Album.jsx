@@ -58,7 +58,7 @@ export default function Album() {
                     <div className='album-details-bottom'>
                         <div className='album-deatils-artists-container'>
                             {album.artists.map((artist, i, arr) => (
-                                <Link to={`/artist/${artist.id}`} state={state} className='album-details-artist'>{artist.name}{i != (arr.length-1) ? ',' : ''}</Link>
+                                <Link to={`/artist/${artist.id}`} state={state} className='album-details-artist'>{artist.name}{i != (arr.length-1) ? ', ' : ''}</Link>
                                 // <Link to={`/artist/${artist.id}`} className='artist-name' state={state} >{artist.name}</Link>
                             ))}
                         </div>
