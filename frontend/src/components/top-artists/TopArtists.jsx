@@ -5,6 +5,7 @@ import './topArtists.styles.css'
 import Nav from '../nav/Nav';
 import playIcon from  '../../assets/icons/play-icon.svg'
 import personIcon from '../../assets/icons/person.svg'
+import Footer from '../nav/Footer';
 
 export default function TopArtists() {
     const { state } = useLocation();
@@ -78,6 +79,7 @@ export default function TopArtists() {
                     )}
                 </div>
             </div>
+            <Footer />
         </>
       )
 }

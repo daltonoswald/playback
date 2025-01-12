@@ -2,10 +2,17 @@
 
 body,
 #root {
+    margin: 0;
     min-height: 100vh;
     background-color: #1a1a1a;
     color: white !important;
     font-family: "Roboto", sans-serif;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .content {

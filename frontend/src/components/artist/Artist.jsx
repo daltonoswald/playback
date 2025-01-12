@@ -7,6 +7,7 @@ import Discog from './Discog';
 import personIcon from '../../assets/icons/person.svg'
 import albumIcon from '../../assets/icons/album.svg'
 import playIcon from '../../assets/icons/play-icon.svg'
+import Footer from '../nav/Footer';
 
 export default function Artist() {
     const [isLoading, setIsLoading] = useState(true);
@@ -111,6 +112,7 @@ export default function Artist() {
             </div>
         </div>
         )}
+        <Footer />
         </>
     )
 }

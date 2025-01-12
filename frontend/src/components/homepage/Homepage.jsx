@@ -4,6 +4,7 @@ import { useLocation, Link } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
 import Nav from '../nav/Nav'
 import './homepage.styles.css'
+import Footer from '../nav/Footer';
 
 function App() {
   const [spotifyToken, setSpotifyToken] = useState('');
@@ -46,6 +47,7 @@ function App() {
                 <Link to='/search' state={{spotifyToken: spotifyToken, user: user, isLoggedIn: isLoggedIn}}>Search</Link>
               </div>
             </div>
+            <Footer />
           </>
         )}
     </>

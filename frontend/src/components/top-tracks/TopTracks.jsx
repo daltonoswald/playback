@@ -5,6 +5,7 @@ import './tracks.styles.css'
 import Nav from '../nav/Nav';
 import playIcon from '../../assets/icons/play-icon.svg'
 import albumIcon from '../../assets/icons/album.svg'
+import Footer from '../nav/Footer';
 
 export default function TopTracks() {
     const { state } = useLocation();
@@ -81,6 +82,7 @@ export default function TopTracks() {
                     )}
                 </div>
             </div>
+            <Footer />
         </>
       )
 }

@@ -7,6 +7,7 @@ import Nav from '../nav/Nav';
 import Tracklist from '../tracklist/Tracklist';
 import albumIcon from '../../assets/icons/album.svg'
 import './album.styles.css'
+import Footer from '../nav/Footer';
 
 export default function Album() {
     const [isLoading, setIsLoading] = useState(true);
@@ -71,6 +72,7 @@ export default function Album() {
                 </div>
             </div>
         )}
+        <Footer />
         </>
     )
 }
