@@ -45,9 +45,3 @@
     height: 100%;
     /* width: 100%; */
 }
-
-.play-icon {
-    height: 36px;
-    filter: invert(0%) sepia(2%) saturate(7%) hue-rotate(21deg) brightness(94%) contrast(104%);
-    cursor: pointer;
-}

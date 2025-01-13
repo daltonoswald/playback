@@ -16,7 +16,7 @@ export default function Footer() {
                 </div>
             </a>
             <div className="footer-links">
-                    <a href='https://github.com/daltonoswald/photo-tagging-app' className="footer-github">
+                    <a href='https://github.com/daltonoswald/statsify' className="footer-github">
                         <img className="icon white-svg" src={githubIcon} alt="github icon" />
                     </a>
                     <a href='https://linkedin.com/in/daltonoswald' className="footer-linkedin">

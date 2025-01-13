@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto');
 
+
 body,
 #root {
     margin: 0;
@@ -18,9 +19,8 @@ body,
 .content {
     width: 75vw;
     height: 100%;
-    margin: 0 auto;
+    margin: 2vh auto;
     color: white;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -114,4 +114,15 @@ button:hover {
 button:active {
     box-shadow: none;
     transform: translateY(0);
+}
+
+.play-icon {
+    height: 36px;
+    filter: invert(0%) sepia(2%) saturate(7%) hue-rotate(21deg) brightness(94%) contrast(104%);
+    cursor: pointer;
+}
+
+.play-icon:hover {
+    transition: 0.9s;
+    transform: rotateZ(360deg);
 }

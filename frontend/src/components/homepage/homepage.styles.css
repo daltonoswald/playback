@@ -12,6 +12,10 @@
     align-items: center;
 }
 
+.user-picture {
+    height: 256px;
+}
+
 .welcome-links {
     width: 50%;
     margin: 0 auto;

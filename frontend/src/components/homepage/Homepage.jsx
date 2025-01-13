@@ -38,7 +38,7 @@ function App() {
             <Nav />
             <div className='content'>
               <div className='user-info'>
-                <img src={user.images[0].url} />
+                <img src={user.images[0].url} className='user-picture' />
                 <h2>{user.display_name}</h2>
               </div>
               <div className='welcome-links'>
