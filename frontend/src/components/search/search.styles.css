@@ -70,10 +70,3 @@
 .result-details > p {
     margin: 0;
 }
-
-.track-results,
-.artist-results,
-.album-results {
-
-    border: 3px solid black;
-}

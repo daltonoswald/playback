@@ -6,6 +6,7 @@ import './search.styles.css';
 import personIcon from '../../assets/icons/person.svg'
 import albumIcon from '../../assets/icons/album.svg'
 import playIcon from '../../assets/icons/play-icon.svg'
+import Footer from '../nav/Footer';
 
 export default function Search () {
     const [tracks, setTracks] = useState(null)
@@ -57,7 +58,7 @@ export default function Search () {
         <>
             <Nav />
             <div className='content'>
-                <h1>Search Page</h1>
+                <h1>Search</h1>
                     <form onSubmit={handleSearch} className='search-form'>
                         <input type='text' id='search' name='search' placeholder='What are you looking for?' />
                         {/* <button className='search-button' type='submit'>Search</button> */}
@@ -140,6 +141,7 @@ export default function Search () {
                     </>
                 )}
             </div>
+            <Footer />
         </>
     )
 }
