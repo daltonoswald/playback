@@ -45,3 +45,11 @@
     height: 100%;
     /* width: 100%; */
 }
+
+@media only screen and (max-width: 600px) {
+    .artist-image-container {
+        min-width: 20vw;
+        width: 20vw;
+        height: 20vw;
+    }
+}

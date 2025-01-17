@@ -23,3 +23,10 @@
     align-items: center;
     justify-content: space-around;
 }
+
+@media only screen and (max-width: 600px) {
+    .welcome-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+}

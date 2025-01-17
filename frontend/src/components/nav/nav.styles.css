@@ -1,5 +1,6 @@
 .nav {
     display:flex;
+    align-items: center;
     width: 75vw;
     margin: 0 auto;
     padding: 8px 0;
@@ -11,4 +12,15 @@
     align-items: center;
     justify-content: space-around;
     margin: 0 auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .nav {
+        width: 90vw;
+        font-size: 12px;
+    }
+
+    .nav-middle {
+        width: 100%;
+    }
 }
