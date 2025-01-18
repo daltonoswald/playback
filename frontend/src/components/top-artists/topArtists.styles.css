@@ -47,9 +47,17 @@
 }
 
 @media only screen and (max-width: 600px) {
+    .artists-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
     .artist-image-container {
         min-width: 20vw;
         width: 20vw;
         height: 20vw;
+    }
+    
+    .artist-name {
+        font-size: 12px;
     }
 }

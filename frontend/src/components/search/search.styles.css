@@ -70,3 +70,11 @@
 .result-details > p {
     margin: 0;
 }
+
+@media only screen and (max-width: 600px) {
+    .track-results,
+    .artist-results,
+    .album-results {
+        grid-template-columns: 1fr 1fr
+    }
+}

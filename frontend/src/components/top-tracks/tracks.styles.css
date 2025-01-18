@@ -38,3 +38,21 @@ a:visited {
     text-decoration: none;
     color: black;
 }
+
+@media only screen and (max-width: 600px) {
+    .track-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .album-image-container,
+    .album-image {
+        min-width: 20vw;
+        width: 20vw;
+        height: 20vw;
+    }
+    
+    .track-name,
+    .track-artist {
+        font-size: 12px;
+    }
+}

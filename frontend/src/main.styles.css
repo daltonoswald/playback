@@ -126,3 +126,15 @@ button:active {
     transition: 0.9s;
     transform: rotateZ(360deg);
 }
+
+@media only screen and (max-width: 600px) {
+    .content {
+        width: 90vw;
+    }
+    .term-buttons {
+        width: 100%;
+    }
+    .play-icon {
+        height: 24px;
+    }
+}

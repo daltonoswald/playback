@@ -16,3 +16,22 @@
     flex-direction: column;
     align-items: center;
 }
+
+@media only screen and (max-width: 600px) {
+    .album-details-image {
+        width: 50%;
+    }
+
+    .album-details-name {
+        font-size: 24px;
+    }
+
+    .album-tracklist {
+        width: 100%;
+    }
+
+    .tracklist-track {
+        width: 100%;
+        gap: 8px;
+    }
+}
