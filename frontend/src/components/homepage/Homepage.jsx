@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { loginEndpoint } from '../login/loginEndpoint'
 import { useLocation, Link } from 'react-router-dom';
-import SpotifyWebApi from 'spotify-web-api-js'
+import Footer from '../nav/Footer';
 import Nav from '../nav/Nav'
 import './homepage.styles.css'
-import Footer from '../nav/Footer';
+import personIcon from '../../assets/icons/person.svg'
 
 function App() {
   const [spotifyToken, setSpotifyToken] = useState('');
@@ -38,7 +38,12 @@ function App() {
             <Nav />
             <div className='content'>
               <div className='user-info'>
-                <img src={user.images[0].url} className='user-picture' />
+                {user.images.length > 0 && (
+                  <img src={user.images[0].url} className='user-picture' />
+                )}
+                {user.images.length === 0 && (
+                  <img src={personIcon} className='user-picture' />
+                )}
                 <h2>{user.display_name}</h2>
               </div>
               <div className='welcome-links'>
