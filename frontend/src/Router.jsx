@@ -7,12 +7,14 @@ import TopArtists from './components/top-artists/TopArtists';
 import Artist from './components/artist/Artist';
 import Album from './components/album/Album';
 import Search from './components/search/Search';
+import Error from './components/error/Error';
 
 export default function Router() {
     const router = createBrowserRouter([
         {
             path: '/',
-            element: <Login />
+            element: <Login />,
+            errorElement: <Error />
         },
         {
             path: '/home',
