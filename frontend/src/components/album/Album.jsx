@@ -11,39 +11,58 @@ import Footer from '../nav/Footer';
 
 export default function Album() {
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [album, setAlbum] = useState('');
     const spotifyApi = new SpotifyWebApi();
     const params = useParams();
     const navigate = useNavigate();
     const { state } = useLocation();
+    const spotifyToken = localStorage.getItem('spotifyToken')
+
+    // useEffect(() => {
+    //     console.log(state);
+    //     console.log('params', params)
+    //     if (!state) {
+    //       navigate('/');
+    //     }
+    //   },[state])
+    console.log(album)
 
     useEffect(() => {
-        console.log(state);
-        console.log('params', params)
-        if (!state) {
-          navigate('/');
-        }
-      },[state])
-
-    useEffect(() => {
-        spotifyApi.setAccessToken(state.spotifyToken);
-        spotifyApi.getAlbum(params.albumid).then((album) => {
-            console.log('album', album);
-            setAlbum(album)
-        })
+        // spotifyApi.setAccessToken(state.spotifyToken);
+        spotifyApi.setAccessToken(spotifyToken);
+        // spotifyApi.getAlbum(params.albumid).then((album) => {
+        //     console.log('album', album);
+        //     setAlbum(album)
+        // })
+        spotifyApi.getAlbum(params.albumid).then(
+            function(data) {
+                console.log('album', data);
+                setAlbum(data)
+                setIsLoading(false)
+            },
+            function (err) {
+                console.error(err)
+                setError(err)
+            }
+        )
     },[params])
 
-    useEffect(() => {
-        if (album) {
-            setIsLoading(false);
-        }
-    },[album])
-    
+    // useEffect(() => {
+    //     if (album !== '') {
+    //         setIsLoading(false);
+    //     }
+    // },[album])
 
     return (
         <>
         <Nav />
-        {!isLoading && (
+        {(isLoading && error === null) && (
+            <div className='content'>
+                <h1>Loading...</h1>
+            </div>
+        )}
+        {(!isLoading && album !== '') && (
             <div className='content'>
                 <div className='album-details'>
                     <div className='album-details-top'>
@@ -70,6 +89,11 @@ export default function Album() {
                 <div className='album-tracklist'>
                     <Tracklist tracks={album.tracks.items} />
                 </div>
+            </div>
+        )}
+        {(isLoading && error && album === '') && (
+            <div className='content'>
+                <h1>Album not found.</h1>
             </div>
         )}
         <Footer />

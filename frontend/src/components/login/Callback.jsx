@@ -12,6 +12,7 @@ export default function Callback() {
         const access_token = queryParamaters.get('access_token')
         const spotifyToken = access_token
         console.log(queryParamaters);
+        localStorage.setItem('spotifyToken', spotifyToken)
     
         if (spotifyToken) {
           spotifyApi.setAccessToken(spotifyToken)

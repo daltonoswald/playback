@@ -11,6 +11,7 @@ import Footer from '../nav/Footer';
 
 export default function Artist() {
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [artist, setArtist] = useState('');
     const [discography, setDiscography] = useState(null)
     const [topTracks, setTopTracks] = useState(null)
@@ -19,48 +20,67 @@ export default function Artist() {
     const params = useParams();
     const navigate = useNavigate();
     const { state } = useLocation();
+    const spotifyToken = localStorage.getItem('spotifyToken')
+    
+
+    // useEffect(() => {
+    //     console.log(state);
+    //     console.log('params', params)
+    //     if (!state) {
+    //       navigate('/');
+    //     }
+    //   },[state])
 
     useEffect(() => {
-        console.log(state);
-        console.log('params', params)
-        if (!state) {
-          navigate('/');
-        }
-      },[state])
-
-    useEffect(() => {
-        spotifyApi.setAccessToken(state.spotifyToken);
-        spotifyApi.getArtist(params.artistid).then((artist) => {
-            console.log('artist: ', artist)
-            setArtist(artist);
-        })
-        .then(spotifyApi.getArtistTopTracks(params.artistid).then((tracks) => {
-            console.log('tracks: ', tracks.tracks);
-            setTopTracks(tracks.tracks);
-        }))
-        .then(spotifyApi.getArtistAlbums(params.artistid).then((albums) => {
-            console.log('albums: ', albums.items)
-            const discog = albums.items;
-            setDiscography(discog)
-            const key = 'album_type'
-            const value = 'album'
-            const key2 = 'album_group'
-            const value2 = 'album'
-            const filteredData = discog.filter(item => ((item[key] === value) && (item[key2] === value2)));
-            console.log(filteredData);
-            setAlbums(filteredData);
-        }))
+        spotifyApi.setAccessToken(spotifyToken);
+        spotifyApi.getArtist(params.artistid).then(
+            function(data) {
+                console.log('artist', data);
+                setArtist(data)
+            },
+            function (err) {
+                console.error(err)
+                setError(err);
+            }
+        )
+        .then(spotifyApi.getArtistTopTracks(params.artistid).then(
+            function(data) {
+                console.log('toptracks', data)
+                setTopTracks(data.tracks)
+            },
+            function (err) {
+                console.error(err)
+                setError(err);
+            }
+        ))
+        .then(spotifyApi.getArtistAlbums(params.artistid).then(
+            function (data) {
+                console.log('albums', data)
+                const discog = data.items;
+                setDiscography(discog)
+                const key = 'album_type'
+                const value = 'album'
+                const key2 = 'album_group'
+                const value2 = 'album'
+                const filteredData = discog.filter(item => ((item[key] === value) && (item[key2] === value2)));
+                console.log(filteredData);
+                setAlbums(filteredData);
+                setIsLoading(false)
+            },
+            function (err) {
+                console.error(err)
+                setError(err);
+            }
+        ))
     },[params])
 
-    useEffect(() => {
-        if (artist && topTracks && albums) {
-            setIsLoading(false);
-        }
-    },[artist, topTracks, albums])
+    // useEffect(() => {
+    //     if (artist && topTracks && albums) {
+    //         setIsLoading(false);
+    //     }
+    // },[artist, topTracks, albums])
 
     const handlePlayTrack = (e) => {
-        console.log(e.target.id)
-        console.log(e.target.parentElement.parentElement.id)
         spotifyApi.setAccessToken(state.spotifyToken);
         spotifyApi.play(
             {
@@ -73,10 +93,25 @@ export default function Artist() {
     }
     
 
+    if (isLoading && error && artist === '') return (
+        <>
+        <Nav />
+        <div className='content'>
+            <h1>Artist not found.</h1>
+            </div>
+        <Footer />
+        </>
+    )
+
     return (
         <>
         <Nav />
-        {!isLoading && (
+        {isLoading && (
+            <div className='content'>
+                <h1>Loading...</h1>
+            </div>
+        )}
+        {!isLoading && artist && (
         <div className='content'>
             <div className='artist-details'>
                 {artist.images.length >= 1 && (

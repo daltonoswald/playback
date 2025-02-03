@@ -3,7 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import './nav.styles.css'
 
 export default function Nav() {
-    const [spotifyToken, setSpotifyToken] = useState('');
+    const [spotifyToken, setSpotifyToken] = useState(localStorage.getItem('spotifyToken'));
     const [user, setUser] = useState({});
     const { state } = useLocation();
   
