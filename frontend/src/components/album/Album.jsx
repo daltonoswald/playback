@@ -10,31 +10,17 @@ import './album.styles.css'
 import Footer from '../nav/Footer';
 
 export default function Album() {
+    const spotifyToken = localStorage.getItem('spotifyToken')
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [album, setAlbum] = useState('');
     const spotifyApi = new SpotifyWebApi();
     const params = useParams();
     const navigate = useNavigate();
-    const { state } = useLocation();
-    const spotifyToken = localStorage.getItem('spotifyToken')
 
-    // useEffect(() => {
-    //     console.log(state);
-    //     console.log('params', params)
-    //     if (!state) {
-    //       navigate('/');
-    //     }
-    //   },[state])
-    console.log(album)
 
     useEffect(() => {
-        // spotifyApi.setAccessToken(state.spotifyToken);
         spotifyApi.setAccessToken(spotifyToken);
-        // spotifyApi.getAlbum(params.albumid).then((album) => {
-        //     console.log('album', album);
-        //     setAlbum(album)
-        // })
         spotifyApi.getAlbum(params.albumid).then(
             function(data) {
                 console.log('album', data);
@@ -46,13 +32,7 @@ export default function Album() {
                 setError(err)
             }
         )
-    },[params])
-
-    // useEffect(() => {
-    //     if (album !== '') {
-    //         setIsLoading(false);
-    //     }
-    // },[album])
+    },[spotifyToken, params])
 
     return (
         <>
@@ -78,8 +58,7 @@ export default function Album() {
                     <div className='album-details-bottom'>
                         <div className='album-deatils-artists-container'>
                             {album.artists.map((artist, i, arr) => (
-                                <Link to={`/artist/${artist.id}`} state={state} className='album-details-artist'>{artist.name}{i != (arr.length-1) ? ', ' : ''}</Link>
-                                // <Link to={`/artist/${artist.id}`} className='artist-name' state={state} >{artist.name}</Link>
+                                <Link to={`/artist/${artist.id}`} className='album-details-artist'>{artist.name}{i != (arr.length-1) ? ', ' : ''}</Link>
                             ))}
                         </div>
                         <div className='album-details-release'>{format(album.release_date, 'yyyy')}</div>

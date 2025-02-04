@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation, Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
 import Nav from '../nav/Nav';
 import './search.styles.css';
@@ -9,25 +9,23 @@ import playIcon from '../../assets/icons/play-icon.svg'
 import Footer from '../nav/Footer';
 
 export default function Search () {
+    const spotifyToken = localStorage.getItem('spotifyToken')
     const [tracks, setTracks] = useState(null)
     const [artists, setArtists] = useState(null)
     const [albums, setAlbums] = useState(null);
-    const { state } = useLocation();
-    console.log(state);
     const spotifyApi = new SpotifyWebApi();
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(state);
-        if (!state || state.spotifyToken === '') {
+        if (!spotifyToken) {
           navigate('/');
         }
-      },[state])
+      },[spotifyToken])
 
     const handleSearch = (e) => {
         e.preventDefault();
         console.log(e.target.search.value);
-        spotifyApi.setAccessToken(state.spotifyToken);
+        spotifyApi.setAccessToken(spotifyToken);
         spotifyApi.searchTracks(e.target.search.value, { limit: 9 }).then((tracks) => {
             console.log(tracks.tracks.items)
             setTracks(tracks.tracks.items)
@@ -71,15 +69,15 @@ export default function Search () {
                                 {tracks && (
                                     tracks.map(track => (
                                         <div className='track-result' key={track.id} id={track.id} onDoubleClick={handlePlayTrack}>
-                                            <Link to={`/album/${track.album.id}`} state={state}>
+                                            <Link to={`/album/${track.album.id}`}>
                                                 <img src={track.album.images[0].url} className='search-result-image' />
                                             </Link>
                                             <div className='result-details'>
                                                 {/* <p>{track.name}</p> */}
-                                                <Link to={`/album/${track.album.id}`} state={state}>{track.name}</Link>
+                                                <Link to={`/album/${track.album.id}`}>{track.name}</Link>
                                                 <div className='result-track-artists'>
                                                     {track.artists.map((artist, i, arr) => (
-                                                        <Link to={`/artist/${artist.id}`} state={state} key={artist.id}>{artist.name}{i != (arr.length-1) ? ', ' : ''}</Link>
+                                                        <Link to={`/artist/${artist.id}`} key={artist.id}>{artist.name}{i != (arr.length-1) ? ', ' : ''}</Link>
                                                     ))}
                                                 </div>
                                             </div>
@@ -94,7 +92,7 @@ export default function Search () {
                                 {artists && (
                                     artists.map(artist => (
                                         <div className='artist-result' key={artist.id} id={artist.id} onDoubleClick={handlePlayArtist}>
-                                            <Link to={`/artist/${artist.id}`} state={state}>
+                                            <Link to={`/artist/${artist.id}`}>
                                                 {artist.images.length >= 1 && (
                                                         // <img src={artist.images[0].url} className='search-result-image' />
                                                         <div className='search-result-image search-artist-image' style={{backgroundImage: 'url(' + artist.images[0].url + ')'}} />
@@ -104,7 +102,7 @@ export default function Search () {
                                                 )}
                                             </Link>
                                             <div className='result-details'>
-                                                <Link to={`/artist/${artist.id}`} key={artist.id} state={state} >{artist.name}</Link>
+                                                <Link to={`/artist/${artist.id}`} key={artist.id}>{artist.name}</Link>
                                             </div>
                                         </div>
                                     ))
@@ -117,7 +115,7 @@ export default function Search () {
                                 {albums && (
                                     albums.map(album => (
                                         <div className='album-result' key={album.id} id={album.id} onDoubleClick={handlePlayAlbum}>
-                                            <Link to={`/album/${album.id}`} state={state}>
+                                            <Link to={`/album/${album.id}`}>
                                             {album.images.length >= 1 && (
                                                 <img src={album.images[0].url} className='search-result-image' /> 
                                             )}
@@ -126,10 +124,10 @@ export default function Search () {
                                             )}
                                             </Link>
                                             <div className='result-details'>
-                                                <Link to={`/album/${album.id}`} state={state} >{album.name}</Link>
+                                                <Link to={`/album/${album.id}`}>{album.name}</Link> 
                                                 <div className='result-album-artists'>
                                                     {album.artists.map((artist, i, arr) => (
-                                                        <Link to={`/artist/${artist.id}`} state={state} key={artist.id}>{artist.name}{i != (arr.length-1) ? ', ' : ''}</Link>
+                                                        <Link to={`/artist/${artist.id}`} key={artist.id}>{artist.name}{i != (arr.length-1) ? ', ' : ''}</Link>
                                                     ))}
                                                 </div>
                                             </div>

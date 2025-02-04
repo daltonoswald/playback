@@ -8,31 +8,30 @@ import personIcon from '../../assets/icons/person.svg'
 import Footer from '../nav/Footer';
 
 export default function TopArtists() {
-    const { state } = useLocation();
-    console.log(state);
+    const spotifyToken = localStorage.getItem('spotifyToken');
     const [topArtists, setTopArtists] = useState(null);
     const [term, setTerm] = useState('medium');
     const navigate = useNavigate();
     const spotifyApi = new SpotifyWebApi();
   
     useEffect(() => {
-      if (!state || state.spotifyToken === '') {
+      if (!spotifyToken) {
         navigate('/');
       } else {
         handleGetTopArtists();
       }
-    },[state])
+    },[spotifyToken])
   
     const handleGetTopArtists = (e) => {
         if (e) {
-            spotifyApi.setAccessToken(state.spotifyToken);
+            spotifyApi.setAccessToken(spotifyToken);
             spotifyApi.getMyTopArtists({time_range: (e.target.id + '_term')}).then((artists) => {
                 setTerm(e.target.id)
                 setTopArtists(artists.items)
                 console.log(artists.items)
             })
         } else {
-            spotifyApi.setAccessToken(state.spotifyToken);
+            spotifyApi.setAccessToken(spotifyToken);
             spotifyApi.getMyTopArtists({time_range: 'medium_term'}).then((artists) => {
                 setTopArtists(artists.items)
                 console.log(artists.items)
@@ -46,7 +45,7 @@ export default function TopArtists() {
 
     const navigateToArtist = (e) => {
         console.log(e.target.id)
-        navigate(`/artist/${e.target.id}`, { state: state })
+        navigate(`/artist/${e.target.id}`)
     }
 
 
@@ -71,7 +70,7 @@ export default function TopArtists() {
                                 )}
                                 <div className='artist-info'>
                                     {/* <a href={artist.uri} className='artist-name'>{artist.name}</a> */}
-                                    <Link to={`/artist/${artist.id}`} className='artist-name' state={state} >{artist.name}</Link>
+                                    <Link to={`/artist/${artist.id}`} className='artist-name'>{artist.name}</Link>
                                     <img src={playIcon} className='play-icon' onClick={handlePlayArtist} />
                                 </div>
                             </div>

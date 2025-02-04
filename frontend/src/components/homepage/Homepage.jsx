@@ -1,29 +1,33 @@
 import { useEffect, useState } from 'react'
 import { loginEndpoint } from '../login/loginEndpoint'
 import { useLocation, Link } from 'react-router-dom';
+import SpotifyWebApi from 'spotify-web-api-js'
 import Footer from '../nav/Footer';
 import Nav from '../nav/Nav'
 import './homepage.styles.css'
 import personIcon from '../../assets/icons/person.svg'
 
 function App() {
-  const [spotifyToken, setSpotifyToken] = useState('');
+  const spotifyToken = localStorage.getItem('spotifyToken');
   const [user, setUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true)
+  const spotifyApi = new SpotifyWebApi();
   const { state } = useLocation();
-  console.log(state);
 
   useEffect(() => {
-    if (state) {
-      setSpotifyToken(state.spotifyToken)
-      setUser(state.user);
-      setIsLoggedIn(true);
+    if (localStorage.getItem('spotifyToken')) {
+      spotifyApi.setAccessToken(spotifyToken)
+      spotifyApi.getMe().then((user) => {
+        console.log(user)
+        setUser(user)
+        setIsLoading(false)
+      })
     }
   },[state])
 
   return (
     <>
-        {!isLoggedIn && (
+        {isLoading && !user && (
           <div className='content'>
             <div className='welcome-message'>
               <h1>Welcome to Statsify</h1>
@@ -33,7 +37,7 @@ function App() {
             </div>
           </div>
         )}
-        {(spotifyToken && user) && (
+        {(spotifyToken && user && !isLoading) && (
           <>
             <Nav />
             <div className='content'>
@@ -47,9 +51,9 @@ function App() {
                 <h2>{user.display_name}</h2>
               </div>
               <div className='welcome-links'>
-                <Link to='/my-top-tracks' state={{spotifyToken: spotifyToken, user: user, isLoggedIn: isLoggedIn}}>Get My Top Tracks</Link>
-                <Link to='/my-top-artists' state={{spotifyToken: spotifyToken, user: user, isLoggedIn: isLoggedIn}}>Get My Top Artists</Link>
-                <Link to='/search' state={{spotifyToken: spotifyToken, user: user, isLoggedIn: isLoggedIn}}>Search</Link>
+                <Link to='/my-top-tracks'>Get My Top Tracks</Link>
+                <Link to='/my-top-artists'>Get My Top Artists</Link>
+                <Link to='/search'>Search</Link>
               </div>
             </div>
             <Footer />

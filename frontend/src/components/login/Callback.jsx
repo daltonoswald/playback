@@ -18,7 +18,8 @@ export default function Callback() {
           spotifyApi.setAccessToken(spotifyToken)
           spotifyApi.getMe().then((user) => {
             console.log(user);
-            navigate('/home', {state: {spotifyToken: spotifyToken, user: user}})
+            // navigate('/home', {state: {spotifyToken: spotifyToken, user: user}})
+            navigate('/home')
           })
         }
       },[])

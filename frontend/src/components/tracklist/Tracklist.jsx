@@ -14,7 +14,7 @@ export default function Tracklist({ tracks }) {
             tracks.map((track, i) => (
                 <div className='tracklist-track' key={track.id} id={track.id}>
                         <div className='tracklist-index'>{i+1}</div>
-                        <img src={playIcon} className='tracklist-play-icon' />
+                        <img src={playIcon} className='tracklist-play-icon' onClick={handlePlayTrack} />
                         <div className='tracklist-title'>{track.name}</div>
                         <div className='tracklist-duration'>{Math.floor((track.duration_ms / 60000))}:{(Math.floor((track.duration_ms % 60000)/1000).toString()).padStart(2, "0")}</div>
                 </div>

@@ -8,31 +8,30 @@ import albumIcon from '../../assets/icons/album.svg'
 import Footer from '../nav/Footer';
 
 export default function TopTracks() {
-    const { state } = useLocation();
-    console.log(state);
+    const spotifyToken = localStorage.getItem('spotifyToken');
     const [topTracks, setTopTracks] = useState(null);
     const [term, setTerm] = useState('medium');
     const navigate = useNavigate();
     const spotifyApi = new SpotifyWebApi();
   
     useEffect(() => {
-      if (!state || state.spotifyToken === '') {
+      if (!spotifyToken) {
         navigate('/');
       } else {
         handleGetTopTracks();
       }
-    },[state])
+    },[spotifyToken])
   
     const handleGetTopTracks = (e) => {
         if (e) {
-            spotifyApi.setAccessToken(state.spotifyToken);
+            spotifyApi.setAccessToken(spotifyToken);
             spotifyApi.getMyTopTracks({time_range: (e.target.id + '_term')}).then((tracks) => {
                 setTerm(e.target.id)
                 setTopTracks(tracks.items)
                 console.log(tracks.items)
             })
         } else {
-            spotifyApi.setAccessToken(state.spotifyToken);
+            spotifyApi.setAccessToken(spotifyToken);
             spotifyApi.getMyTopTracks({time_range: 'medium_term'}).then((tracks) => {
                 setTopTracks(tracks.items)
                 console.log(tracks.items)
@@ -46,7 +45,7 @@ export default function TopTracks() {
 
     const navigateToAlbum = (e) => {
         console.log(e.target.id)
-        navigate(`/album/${e.target.id}`, { state: state })
+        navigate(`/album/${e.target.id}`)
     }
 
 
@@ -73,8 +72,8 @@ export default function TopTracks() {
                                 </div>
                                 <div className='track-info'>
                                     {/* <a href={track.uri} className='track-name'>{track.name}</a> */}
-                                    <Link to={`/album/${track.album.id}`} className='track-name' state={state} >{track.name}</Link>
-                                    <Link to={`/artist/${track.artists[0].id}`} className='track-artist' state={state} >{track.artists[0].name}</Link>
+                                    <Link to={`/album/${track.album.id}`} className='track-name'>{track.name}</Link>
+                                    <Link to={`/artist/${track.artists[0].id}`} className='track-artist'>{track.artists[0].name}</Link>
                                     <img src={playIcon} className='play-icon' onClick={handlePlayTrack} />
                                 </div>
                             </div>
