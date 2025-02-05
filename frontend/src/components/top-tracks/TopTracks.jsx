@@ -28,13 +28,11 @@ export default function TopTracks() {
             spotifyApi.getMyTopTracks({time_range: (e.target.id + '_term')}).then((tracks) => {
                 setTerm(e.target.id)
                 setTopTracks(tracks.items)
-                console.log(tracks.items)
             })
         } else {
             spotifyApi.setAccessToken(spotifyToken);
             spotifyApi.getMyTopTracks({time_range: 'medium_term'}).then((tracks) => {
                 setTopTracks(tracks.items)
-                console.log(tracks.items)
             })
         }
     }
@@ -44,7 +42,6 @@ export default function TopTracks() {
     }
 
     const navigateToAlbum = (e) => {
-        console.log(e.target.id)
         navigate(`/album/${e.target.id}`)
     }
 

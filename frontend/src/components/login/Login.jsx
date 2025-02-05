@@ -6,15 +6,14 @@ import '../homepage/homepage.styles.css'
 import Footer from '../nav/Footer';
 
 export default function Login() {
-  const { state } = useLocation();
+  const spotifyToken = localStorage.getItem('spotifyToken');
   const navigate = useNavigate();
-  console.log(state);
 
   useEffect(() => {
-    if (state) {
+    if (spotifyToken) {
         navigate('/home')
     }
-  },[state])
+  },[spotifyToken])
 
   return (
     <>

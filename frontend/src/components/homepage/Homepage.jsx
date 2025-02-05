@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { loginEndpoint } from '../login/loginEndpoint'
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
 import Footer from '../nav/Footer';
 import Nav from '../nav/Nav'
@@ -12,18 +12,20 @@ function App() {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true)
   const spotifyApi = new SpotifyWebApi();
-  const { state } = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (localStorage.getItem('spotifyToken')) {
       spotifyApi.setAccessToken(spotifyToken)
       spotifyApi.getMe().then((user) => {
-        console.log(user)
         setUser(user)
         setIsLoading(false)
       })
+    } else {
+      navigate('/')
     }
-  },[state])
+  },[spotifyToken])
+
 
   return (
     <>
@@ -32,7 +34,7 @@ function App() {
             <div className='welcome-message'>
               <h1>Welcome to Statsify</h1>
               <h2>Find your top Artists and Songs</h2>
-              <h2>Explore Spotify&apos;s catalogue</h2>
+              <h2>Explore Spotify&apos;s catalog</h2>
               <a href={loginEndpoint}>Log In With Spotify</a>
             </div>
           </div>

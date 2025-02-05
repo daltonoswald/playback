@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
 import './topArtists.styles.css'
 import Nav from '../nav/Nav';
@@ -28,13 +28,11 @@ export default function TopArtists() {
             spotifyApi.getMyTopArtists({time_range: (e.target.id + '_term')}).then((artists) => {
                 setTerm(e.target.id)
                 setTopArtists(artists.items)
-                console.log(artists.items)
             })
         } else {
             spotifyApi.setAccessToken(spotifyToken);
             spotifyApi.getMyTopArtists({time_range: 'medium_term'}).then((artists) => {
                 setTopArtists(artists.items)
-                console.log(artists.items)
             })
         }
     }
@@ -44,7 +42,6 @@ export default function TopArtists() {
     }
 
     const navigateToArtist = (e) => {
-        console.log(e.target.id)
         navigate(`/artist/${e.target.id}`)
     }
 

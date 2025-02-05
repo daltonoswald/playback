@@ -4,7 +4,6 @@ import playIcon from  '../../assets/icons/play-icon.svg'
 
 export default function Tracklist({ tracks }) {
     const spotifyApi = new SpotifyWebApi();
-    console.log('trackilst', tracks)
 
     const handlePlayTrack = (e) => {
         spotifyApi.play({uris: [`spotify:track:${e.target.parentElement.id}`]})

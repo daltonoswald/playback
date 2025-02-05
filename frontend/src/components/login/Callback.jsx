@@ -8,16 +8,16 @@ export default function Callback() {
 
 
     useEffect(() => {
-        const queryParamaters = new URLSearchParams(window.location.search)
-        const access_token = queryParamaters.get('access_token')
+        const queryParameters = new URLSearchParams(window.location.search)
+        const access_token = queryParameters.get('access_token')
+        const refresh_token = queryParameters.get('refresh_token')
         const spotifyToken = access_token
-        console.log(queryParamaters);
         localStorage.setItem('spotifyToken', spotifyToken)
+        localStorage.setItem('spotifyRefreshToken', refresh_token)
     
         if (spotifyToken) {
           spotifyApi.setAccessToken(spotifyToken)
           spotifyApi.getMe().then((user) => {
-            console.log(user);
             // navigate('/home', {state: {spotifyToken: spotifyToken, user: user}})
             navigate('/home')
           })

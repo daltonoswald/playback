@@ -19,7 +19,6 @@ export default function Router() {
         {
             path: '/home',
             element: <Homepage />
-            // errorElement: <ErrorPage />
         },
         {
             path: '/callback',
@@ -39,7 +38,7 @@ export default function Router() {
         },
         {
             path: '/artist/:artistid',
-            element: <Artist />
+            element: <Artist />,
         },
         {
             path: '/album/:albumid',

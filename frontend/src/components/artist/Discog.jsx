@@ -5,13 +5,12 @@ import SpotifyWebApi from 'spotify-web-api-js'
 import playIcon from  '../../assets/icons/play-icon.svg'
 import albumIcon from  '../../assets/icons/album.svg'
 
-export default function Discog({discography, albums, state}) {
+export default function Discog({discography, albums}) {
     const [discographySettings, setDiscographySettings] = useState('albums');
     const spotifyApi = new SpotifyWebApi();
     
 
     const handleDiscogSettings = (e) => {
-        console.log(e.target.id);
         setDiscographySettings(e.target.id)
     }
 
@@ -27,7 +26,6 @@ export default function Discog({discography, albums, state}) {
 
     return (
         <div className='discography-container'>
-        {/* <h2>Discography</h2> */}
         <div className='discography-settings'>
             <button className={'discog-setting ' + (discographySettings === 'albums' ? 'active' : '')} id='albums' onClick={handleDiscogSettings}>Albums</button>
             <button className={'discog-setting ' + (discographySettings === 'eps' ? 'active' : '')} id='eps' onClick={handleDiscogSettings}>EPs & Singles</button>
@@ -37,11 +35,11 @@ export default function Discog({discography, albums, state}) {
             {albums && (
                 albums.map((album) => (
                     <div className='album' key={album.id} id={album.id}>
-                        <Link to={`/album/${album.id}`} state={state} className='artist-album-image-container'>
+                        <Link to={`/album/${album.id}`} className='artist-album-image-container'>
                             <img src={album.images[0].url} className='artist-album-image'/>
                         </Link>
                         <div className='artist-album-details'>
-                            <Link to={`/album/${album.id}`} className='album-title' state={state}>{album.name}</Link>
+                            <Link to={`/album/${album.id}`} className='album-title'>{album.name}</Link>
                             <img src={playIcon} className='play-icon' onClick={handlePlayAlbum} />
                         </div>
                     </div>
@@ -63,7 +61,7 @@ export default function Discog({discography, albums, state}) {
                         )}
                     </div>
                     <div className='artist-album-details'>
-                    <Link to={`/album/${album.id}`} className='album-title' state={state}>{album.name}</Link>
+                    <Link to={`/album/${album.id}`} className='album-title'>{album.name}</Link>
                         <img src={playIcon} className='play-icon' onClick={handlePlayAlbum} />
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import { useState, useEffect } from 'react'
-import { useParams, useLocation, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { format } from 'date-fns'
 import SpotifyWebApi from 'spotify-web-api-js'
 import Nav from '../nav/Nav';
@@ -16,14 +16,12 @@ export default function Album() {
     const [album, setAlbum] = useState('');
     const spotifyApi = new SpotifyWebApi();
     const params = useParams();
-    const navigate = useNavigate();
 
 
     useEffect(() => {
         spotifyApi.setAccessToken(spotifyToken);
         spotifyApi.getAlbum(params.albumid).then(
             function(data) {
-                console.log('album', data);
                 setAlbum(data)
                 setIsLoading(false)
             },

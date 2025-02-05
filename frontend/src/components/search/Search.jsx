@@ -5,7 +5,6 @@ import Nav from '../nav/Nav';
 import './search.styles.css';
 import personIcon from '../../assets/icons/person.svg'
 import albumIcon from '../../assets/icons/album.svg'
-import playIcon from '../../assets/icons/play-icon.svg'
 import Footer from '../nav/Footer';
 
 export default function Search () {
@@ -24,18 +23,14 @@ export default function Search () {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        console.log(e.target.search.value);
         spotifyApi.setAccessToken(spotifyToken);
         spotifyApi.searchTracks(e.target.search.value, { limit: 9 }).then((tracks) => {
-            console.log(tracks.tracks.items)
             setTracks(tracks.tracks.items)
         })
         spotifyApi.searchArtists(e.target.search.value, { limit: 6 }).then((artists) => {
-            console.log(artists.artists.items);
             setArtists(artists.artists.items)
         })
         spotifyApi.searchAlbums(e.target.search.value, { limit: 6 }).then((albums) => {
-            console.log('albums ', albums.albums.items)
             setAlbums(albums.albums.items)
         })
     }
