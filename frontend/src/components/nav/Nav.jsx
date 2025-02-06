@@ -13,6 +13,8 @@ export default function Nav() {
     navigate('/')
   }
 
+  console.log(location)
+
   useEffect(() => {
     if (!spotifyToken && location.pathname !== '/home') {
       navigate('/');

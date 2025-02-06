@@ -17,10 +17,21 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem('spotifyToken')) {
       spotifyApi.setAccessToken(spotifyToken)
-      spotifyApi.getMe().then((user) => {
-        setUser(user)
-        setIsLoading(false)
-      })
+      // spotifyApi.getMe().then((user) => {
+      //   setUser(user)
+      //   setIsLoading(false)
+      // })
+      spotifyApi.getMe().then(
+        function(user) {
+          setUser(user);
+          setIsLoading(false);
+        },
+        function (err) {
+          console.error(err)
+          localStorage.removeItem('spotifyToken');
+          localStorage.removeItem('spotifyRefreshToken');
+        }
+      )
     } else {
       navigate('/')
     }
