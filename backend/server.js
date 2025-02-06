@@ -9,7 +9,14 @@ const client_id = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
 const redirect_uri = 'http://localhost:3000/callback';
 
-app.use(cors());
+app.use(cors({
+    origin: [
+        `http://localhost:5173`,
+        `https://daltonoswald-statsify.netlify.app/`
+    ],
+    methods: [`GET`, `PUT`, `POST`, `DELETE`],
+    optionsSuccessStatus: 204,
+}));
 
 app.get('/login', (req, res) => {
     const scope = 'user-top-read user-read-playback-state user-modify-playback-state';
