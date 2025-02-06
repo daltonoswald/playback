@@ -20,7 +20,7 @@ app.use(cors({
 }));
 
 app.get('/login', (req, res) => {
-    console.log('in login');
+    // console.log('in login');
     const scope = 'user-top-read user-read-playback-state user-modify-playback-state';
     const auth_query_parameters = querystring.stringify({
         response_type: 'code',
@@ -37,7 +37,7 @@ app.get('/callback', async (req, res) => {
     const code = req.query.code || null;
 
     try {
-        console.log('in try');
+        // console.log('in try');
         const response = await axios({
             method: 'post',
             url: 'https://accounts.spotify.com/api/token',
@@ -58,11 +58,11 @@ app.get('/callback', async (req, res) => {
         // res.redirect(`http://localhost:5173/callback?access_token=${access_token}&refresh_token=${refresh_token}`);
         res.redirect(`https://daltonoswald-statsify.netlify.app/callback?access_token=${access_token}&refresh_token=${refresh_token}`);
     } catch (error) {
-        // console.log(error);
+        console.log(error);
         res.send(error);
     }
 })
 
-app.listen('8080', () => {
-    console.log(`Server running on port 8080`)
+app.listen('3000', () => {
+    console.log(`Server running on port 3000`)
 })
