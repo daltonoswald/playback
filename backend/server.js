@@ -13,7 +13,8 @@ const redirect_uri = `https://www.statsify-production.up.railway.app/callback`
 app.use(cors({
     origin: [
         `http://localhost:5173`,
-        `https://daltonoswald-statsify.netlify.app/`
+        `https://daltonoswald-statsify.netlify.app/`,
+        `*`
     ],
     methods: [`GET`, `PUT`, `POST`, `DELETE`],
     optionsSuccessStatus: 204,
