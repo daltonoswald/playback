@@ -17,8 +17,8 @@ export default function Login() {
 
   const handleTest = async (e) => {
     e.preventDefault();
-    const url = 'http://localhost:3000/test'
-    // const url = `https://www.statsify-production.up.railway.app/test`
+    // const url = 'http://localhost:3000/test'
+    const url = `https://www.statsify-production.up.railway.app/test`
     const sendData = {
       type: 'test',
       number: 2
