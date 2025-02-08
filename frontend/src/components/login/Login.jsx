@@ -18,18 +18,18 @@ export default function Login() {
   const handleTest = async (e) => {
     e.preventDefault();
     // const url = 'http://localhost:3000/test'
-    const url = `https://www.statsify-production.up.railway.app/test`
+    const url = `http://statsify-production.up.railway.app/test`
     const sendData = {
       type: 'test',
       number: 2
     }
     try {
       const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(sendData),
+        method: "GET",
+        // headers: {
+        //   "Content-Type": "application/json"
+        // },
+        // body: JSON.stringify(sendData),
         mode: 'cors',
       })
       const data = await response.json();
@@ -45,6 +45,19 @@ export default function Login() {
     }
   }
 
+  const handleLogIn = async (e) => {
+    e.preventDefault();
+    const url = `http://statsify-production.up.railway.app/login`
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        mode: 'cors'
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <>
           <div className='content'>
@@ -54,6 +67,7 @@ export default function Login() {
               <h2>Explore Spotify&apos;s catalogue</h2>
               <a href={loginEndpoint}>Log In With Spotify</a>
             </div>
+            <button onClick={handleLogIn}>Log In</button>
             <button onClick={handleTest}>Test</button>
           </div>
           <Footer />
