@@ -5,8 +5,8 @@ const cors = require('cors');
 const app = express();
 require('dotenv').config();
 
-const client_id = process.env.CLIENT_ID;
-const client_secret = process.env.CLIENT_SECRET;
+const client_id = process.env.CLIENT_ID || CLIENT_ID;
+const client_secret = process.env.CLIENT_SECRET || CLIENT_SECRET;
 // const redirect_uri = 'http://localhost:3000/callback';
 const redirect_uri = `https://www.statsify-production.up.railway.app/callback`
 
@@ -74,6 +74,6 @@ app.post('/test', (req, res) => {
     res.json('req')
 })
 
-app.listen('3000', () => {
-    console.log(`Server running on port 3000`)
+app.listen(process.env.PORT || PORT, () => {
+    console.log(`Server running on port ${process.env.PORT || PORT}`)
 })
