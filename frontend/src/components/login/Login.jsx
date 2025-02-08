@@ -17,8 +17,8 @@ export default function Login() {
 
   const handleTest = async (e) => {
     e.preventDefault();
-    // const url = 'http://localhost:3000/test'
-    const url = `http://statsify-production.up.railway.app/test`
+    // const url = 'https://localhost:3000/test'
+    const url = `https://statsify-production.up.railway.app/test`
     const sendData = {
       type: 'test',
       number: 2
@@ -47,7 +47,7 @@ export default function Login() {
 
   const handleLogIn = async (e) => {
     e.preventDefault();
-    const url = `http://statsify-production.up.railway.app/login`
+    const url = `https://statsify-production.up.railway.app/login`
     try {
       const response = await fetch(url, {
         method: 'GET',
