@@ -33,6 +33,8 @@ function App() {
         }
       )
     } else {
+      localStorage.removeItem('spotifyToken');
+      localStorage.removeItem('spotifyRefreshToken');
       navigate('/')
     }
   },[spotifyToken])

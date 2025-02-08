@@ -13,14 +13,15 @@ const redirect_uri = `https://www.statsify-production.up.railway.app/callback`
 app.use(cors({
     origin: [
         `http://localhost:5173`,
-        `https://daltonoswald-statsify.netlify.app/`
+        `https://daltonoswald-statsify.netlify.app/`,
+        `*`
     ],
     methods: [`GET`, `PUT`, `POST`, `DELETE`],
     optionsSuccessStatus: 204,
 }));
 
 app.get('/login', (req, res) => {
-    // console.log('in login');
+    console.log('in login');
     const scope = 'user-top-read user-read-playback-state user-modify-playback-state';
     const auth_query_parameters = querystring.stringify({
         response_type: 'code',
@@ -35,6 +36,10 @@ app.get('/login', (req, res) => {
 app.get('/callback', async (req, res) => {
     console.log('in callback')
     const code = req.query.code || null;
+    console.log(code);
+    console.log(redirect_uri)
+    console.log(client_id)
+    console.log(client_secret);
 
     try {
         // console.log('in try');
@@ -44,6 +49,7 @@ app.get('/callback', async (req, res) => {
             data: querystring.stringify({
                 grant_type: 'authorization_code',
                 code: code,
+                // response_type: 'code',
                 redirect_uri: redirect_uri,
                 client_id: client_id,
                 client_secret: client_secret
@@ -61,6 +67,11 @@ app.get('/callback', async (req, res) => {
         console.log(error);
         res.send(error);
     }
+})
+
+app.post('/test', (req, res) => {
+    console.log('test');
+    res.json('req')
 })
 
 app.listen('3000', () => {
