@@ -17,8 +17,8 @@ export default function Login() {
 
   const handleTest = async (e) => {
     e.preventDefault();
-    // const url = 'https://localhost:3000/test'
-    const url = `https://statsify-production.up.railway.app/test`
+    const url = 'http://localhost:3000/test'
+    // const url = `https://statsify-production.up.railway.app/test`
     const sendData = {
       type: 'test',
       number: 2
@@ -47,12 +47,15 @@ export default function Login() {
 
   const handleLogIn = async (e) => {
     e.preventDefault();
-    const url = `https://statsify-production.up.railway.app/login`
+    // const url = `https://statsify-production.up.railway.app/login`
+    const url = 'http://localhost:3000/login'
     try {
       const response = await fetch(url, {
         method: 'GET',
         mode: 'cors'
       })
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
       console.error(error)
     }

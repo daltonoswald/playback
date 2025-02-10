@@ -5,6 +5,10 @@ const cors = require('cors');
 const app = express();
 require('dotenv').config();
 
+const path = require('node:path');
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 const client_id = process.env.CLIENT_ID || CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET || CLIENT_SECRET;
 const redirect_uri = 'https://localhost:3000/callback';
@@ -12,9 +16,9 @@ const redirect_uri = 'https://localhost:3000/callback';
 
 app.use(cors({
     origin: [
-        `https://localhost:5173`,
+        `http://localhost:5173`,
         `https://daltonoswald-statsify.netlify.app`,
-        "*"
+        '*'
     ],
     methods: [`GET`, `PUT`, `POST`, `DELETE`],
     optionsSuccessStatus: 204,
@@ -69,6 +73,15 @@ app.use(cors({
 //     }
 // })
 
+let generateRandomString = function(length) {
+    let text = '';
+    let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < length; i++) {
+        text += possible.charAt(Math.random() * possible.length);
+    }
+    return text
+}
+
 app.get('/login', function(req, res) {
     let state = generateRandomString(16);
     let scope = 'user-top-read user-read-playback-state user-modify-playback-state';
@@ -110,10 +123,17 @@ app.get('/callback', function(req, res) {
     }
 })
 
-app.post('/test', (req, res) => {
+app.get('/test', (req, res) => {
     console.log('test');
-    res.json('req')
+    res.json({ message: 'req' })
 })
+
+const assetsPath = path.join(__dirname, "public");
+app.use(express.static(assetsPath));
+app.use(express.static('./public'));
+
+app.set('views', path.join(__dirname, "views"));
+app.set('view engine', 'ejs');
 
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Server running on port ${process.env.PORT || PORT}`)
