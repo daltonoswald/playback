@@ -20,9 +20,9 @@ export default function Callback() {
     }
 
     useEffect(() => {
-      console.log(getTokenFromUrl())
+      // console.log(getTokenFromUrl())
       const spotifyToken = getTokenFromUrl().access_token;
-      console.log(spotifyToken);
+      // console.log(spotifyToken);
       localStorage.setItem('spotifyToken', spotifyToken)
       // localStorage.setItem('spotifyRefreshToken', refresh_token)
 
@@ -34,7 +34,7 @@ export default function Callback() {
         })
       }
     })
-    
+
     const logout = () => {
       localStorage.removeItem('spotifyToken');
       localStorage.removeItem('spotifyRefreshToken');
