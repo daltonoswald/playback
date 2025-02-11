@@ -42,16 +42,6 @@ function App() {
 
   return (
     <>
-        {isLoading && !user && (
-          <div className='content'>
-            <div className='welcome-message'>
-              <h1>Welcome to Statsify</h1>
-              <h2>Find your top Artists and Songs</h2>
-              <h2>Explore Spotify&apos;s catalog</h2>
-              <a href={loginEndpoint}>Log In With Spotify</a>
-            </div>
-          </div>
-        )}
         {(spotifyToken && user && !isLoading) && (
           <>
             <Nav />

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
+import Footer from '../nav/Footer';
+import Nav from '../nav/Nav';
 
 export default function Callback() {
     const spotifyApi = new SpotifyWebApi();
@@ -18,9 +20,9 @@ export default function Callback() {
     }
 
     useEffect(() => {
-      console.log(getTokenFromUrl())
+      // console.log(getTokenFromUrl())
       const spotifyToken = getTokenFromUrl().access_token;
-      console.log(spotifyToken);
+      // console.log(spotifyToken);
       localStorage.setItem('spotifyToken', spotifyToken)
       // localStorage.setItem('spotifyRefreshToken', refresh_token)
 
@@ -33,27 +35,13 @@ export default function Callback() {
       }
     })
 
-
-    // useEffect(() => {
-    //     const queryParameters = new URLSearchParams(window.location.search)
-    //     const access_token = queryParameters.get('access_token')
-    //     const refresh_token = queryParameters.get('refresh_token')
-    //     const spotifyToken = access_token
-    //     localStorage.setItem('spotifyToken', spotifyToken)
-    //     localStorage.setItem('spotifyRefreshToken', refresh_token)
-    
-    //     if (spotifyToken) {
-    //       spotifyApi.setAccessToken(spotifyToken)
-    //       spotifyApi.getMe().then((user) => {
-    //         // navigate('/home', {state: {spotifyToken: spotifyToken, user: user}})
-    //         navigate('/home')
-    //       })
-    //     }
-    //   },[window])
-
       return (
-        <div>
-            Redirecting you back to the app...
-        </div>
+        <>
+          <Nav />
+          <div className='content'>
+              Redirecting you back to the app...
+          </div>
+          <Footer />
+        </>
       )
 }
