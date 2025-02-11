@@ -13,9 +13,9 @@ app.use(express.urlencoded({ extended: true }));
 
 const client_id = process.env.CLIENT_ID || CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET || CLIENT_SECRET;
-const redirect_uri = 'http://localhost:3000/callback';
+// const redirect_uri = 'http://localhost:3000/callback';
 // const redirect_uri = 'https://localhost:5173/callback';
-// const redirect_uri = `https://statsify-production.up.railway.app/callback`
+const redirect_uri = `https://statsify-production.up.railway.app/callback`
 
 app.use(express.static(__dirname + '/public'))
    .use(cors())
@@ -135,18 +135,20 @@ app.get('/callback', function(req, res) {
           };
   
           // use the access token to access the Spotify Web API
-          request.get(options, function(error, response, body) {
-            console.log(body);
-          });
+          // request.get(options, function(error, response, body) {
+          //   console.log(body);
+          // });
   
           // we can also pass the token to the browser to make requests from there
-          res.redirect('http://localhost:5173/callback#' +
+          // res.redirect('http://localhost:5173/callback#' +
+          res.redirect('https://daltonoswald-statsify.netlify.app/callback#' +
             querystring.stringify({
               access_token: access_token,
               refresh_token: refresh_token
             }));
         } else {
-          res.redirect('http://localhost:5173/#' +
+          // res.redirect('http://localhost:5173/#' +
+          res.redirect('https://daltonoswald-statsify.netlify.app/#' +
             querystring.stringify({
               error: 'invalid_token'
             }));

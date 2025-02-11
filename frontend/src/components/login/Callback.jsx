@@ -27,7 +27,7 @@ export default function Callback() {
       if (spotifyToken) {
         spotifyApi.setAccessToken(spotifyToken)
         spotifyApi.getMe().then((user) => {
-          console.log(user);
+          // console.log(user);
           navigate('/home');
         })
       }

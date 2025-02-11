@@ -17,8 +17,8 @@ export default function Login() {
 
   const handleTest = async (e) => {
     e.preventDefault();
-    const url = 'http://localhost:3000/test'
-    // const url = `https://statsify-production.up.railway.app/test`
+    // const url = 'http://localhost:3000/test'
+    const url = `https://statsify-production.up.railway.app/test`
 
     try {
       const response = await fetch(url, {
@@ -46,7 +46,8 @@ export default function Login() {
               <h2>Find your top Artists and Songs</h2>
               <h2>Explore Spotify&apos;s catalogue</h2>
               {/* <a href={loginEndpoint}>Log In With Spotify</a> */}
-              <a href='http://localhost:3000'>Login With Spotify</a>
+              {/* <a href='http://localhost:3000'>Login With Spotify</a> */}
+              <a href='https://statsify-production.up.railway.app'>Login With Spotify</a>
             </div>
             <button onClick={handleTest}>Test</button>
           </div>
