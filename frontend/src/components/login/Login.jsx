@@ -45,7 +45,6 @@ export default function Login() {
               <h1>Welcome to Statsify</h1>
               <h2>Find your top Artists and Songs</h2>
               <h2>Explore Spotify&apos;s catalogue</h2>
-              {/* <a href={loginEndpoint}>Log In With Spotify</a> */}
               {/* <a href='http://localhost:3000'>Login With Spotify</a> */}
               <a href='https://statsify-production.up.railway.app'>Login With Spotify</a>
             </div>

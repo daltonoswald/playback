@@ -14,7 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 const client_id = process.env.CLIENT_ID || CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET || CLIENT_SECRET;
 // const redirect_uri = 'http://localhost:3000/callback';
-// const redirect_uri = 'https://localhost:5173/callback';
 const redirect_uri = `https://statsify-production.up.railway.app/callback`
 
 app.use(express.static(__dirname + '/public'))

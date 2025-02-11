@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
 import Footer from '../nav/Footer';
 import Nav from '../nav/Nav';
@@ -20,9 +20,9 @@ export default function Callback() {
     }
 
     useEffect(() => {
-      // console.log(getTokenFromUrl())
+      console.log(getTokenFromUrl())
       const spotifyToken = getTokenFromUrl().access_token;
-      // console.log(spotifyToken);
+      console.log(spotifyToken);
       localStorage.setItem('spotifyToken', spotifyToken)
       // localStorage.setItem('spotifyRefreshToken', refresh_token)
 
@@ -34,10 +34,21 @@ export default function Callback() {
         })
       }
     })
+    
+    const logout = () => {
+      localStorage.removeItem('spotifyToken');
+      localStorage.removeItem('spotifyRefreshToken');
+      navigate('/')
+    }
 
       return (
         <>
-          <Nav />
+          <div className='nav'>
+          <Link to='/home' className='nav-left'>Statsify</Link>
+          <div className='nav-middle'>
+          </div>
+              <Link to='/' className='nav-right' onClick={logout}>Logout</Link>
+        </div>
           <div className='content'>
               Redirecting you back to the app...
           </div>
