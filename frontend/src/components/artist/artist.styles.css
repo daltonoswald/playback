@@ -31,6 +31,16 @@
     background-repeat: no-repeat;
 }
 
+.artist-details-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.artist-details-spotify-icon {
+    height: 36px;
+}
+
 .artist-albums {
     display: grid;
     grid-template-columns: 1fr 1fr;

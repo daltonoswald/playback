@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react'
-// import { loginEndpoint } from '../../unused/loginEndpoint'
-import { useLocation, Link, useNavigate } from 'react-router-dom';
-import SpotifyWebApi from 'spotify-web-api-js'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import '../homepage/homepage.styles.css'
 import Footer from '../nav/Footer';
 
@@ -15,28 +13,6 @@ export default function Login() {
     }
   },[spotifyToken])
 
-  // const handleTest = async (e) => {
-  //   e.preventDefault();
-  //   // const url = 'http://localhost:3000/test'
-  //   const url = `https://statsify-production.up.railway.app/test`
-
-  //   try {
-  //     const response = await fetch(url, {
-  //       method: "GET",
-  //       mode: 'cors',
-  //     })
-  //     const data = await response.json();
-  //     if (!response.ok) {
-  //       console.log('error')
-  //       console.log(response);
-  //     }
-  //     if (response.ok) {
-  //       console.log(data)
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
 
   return (
     <>
@@ -48,7 +24,6 @@ export default function Login() {
               {/* <a href='http://localhost:3000'>Login With Spotify</a> */}
               <a href='https://statsify-production.up.railway.app'>Login With Spotify</a>
             </div>
-            {/* <button onClick={handleTest}>Test</button> */}
           </div>
           <Footer />
     </>

@@ -4,10 +4,11 @@ import { useParams, Link } from 'react-router-dom';
 import { format } from 'date-fns'
 import SpotifyWebApi from 'spotify-web-api-js'
 import Nav from '../nav/Nav';
+import Footer from '../nav/Footer';
 import Tracklist from '../tracklist/Tracklist';
 import albumIcon from '../../assets/icons/album.svg'
+import spotifyIcon from '../../assets/icons/spotify.png'
 import './album.styles.css'
-import Footer from '../nav/Footer';
 
 export default function Album() {
     const spotifyToken = localStorage.getItem('spotifyToken')
@@ -51,7 +52,10 @@ export default function Album() {
                            <img src={albumIcon} className='album-details-image' /> 
                         )}
                         
-                        <h1 className='album-details-name'>{album.name}</h1>
+                        <div className='album-details-name'>
+                            <a href={album.uri}><img src={spotifyIcon} className='album-details-spotify-icon' /></a>
+                            <h1>{album.name}</h1>
+                        </div>
                     </div>
                     <div className='album-details-bottom'>
                         <div className='album-deatils-artists-container'>

@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
 import Nav from '../nav/Nav';
+import Footer from '../nav/Footer';
 import Discog from './Discog';
 import personIcon from '../../assets/icons/person.svg'
 import albumIcon from '../../assets/icons/album.svg'
 import playIcon from '../../assets/icons/play-icon.svg'
-import Footer from '../nav/Footer';
+import spotifyIcon from '../../assets/icons/spotify.png'
 import './artist.styles.css';
 
 export default function Artist() {
@@ -24,6 +25,7 @@ export default function Artist() {
         spotifyApi.setAccessToken(spotifyToken);
         spotifyApi.getArtist(params.artistid).then(
             function(data) {
+                console.log(data);
                 setArtist(data)
             },
             function (err) {
@@ -99,7 +101,10 @@ export default function Artist() {
                 {artist.images.length === 0 && (
                     <img src={personIcon} className='artist-details-image' />
                 )}
-                <h1>{artist.name}</h1>
+                <div className='artist-details-name'>
+                    <a href={artist.uri}><img src={spotifyIcon} className='artist-details-spotify-icon' /></a>
+                    <h1>{artist.name}</h1>
+                </div>
             </div>
             <Discog discography={discography} albums={albums} />
             <div className='artist-tracks'>

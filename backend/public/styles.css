@@ -1,16 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+
 body {
     margin: 0;
     min-height: 100vh;
     background-color: #1a1a1a;
     color: white !important;
     font-family: "Roboto", sans-serif;
+    display: flex;
+    align-items: center;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: 0 auto;
+    height: 50vh;
     align-items: center;
+    width: 75vw;
 }
 
 .links {
@@ -21,9 +28,24 @@ body {
     gap: 16px;
 }
 
+.link {
+    text-decoration: underline;
+}
+
+.information {
+    border: 2px solid white;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.information > h3 {
+    margin: 0;
+}
+
 a,
 a:visited {
     color: white;
+    text-decoration: none;
 }
 
 a:hover {

@@ -31,21 +31,6 @@ let generateRandomString = function(length) {
 
 let stateKey = 'spotify_auth_state';
 
-// app.get('/login', function(req, res) {
-//     console.log('in the login')
-//     let state = generateRandomString(16);
-//     let scope = 'user-top-read user-read-playback-state user-modify-playback-state';
-
-//     res.redirect('https://accounts.spotify.com/authorize?' +
-//         querystring.stringify({
-//             response_type: 'code',
-//             client_id: client_id,
-//             scope: scope,
-//             redirect_uri: redirect_uri,
-//             state: state
-//         })
-//     );
-// })
 
 app.get('/login', function(req, res) {
 
@@ -53,7 +38,6 @@ app.get('/login', function(req, res) {
     res.cookie(stateKey, state);
   
     // your application requests authorization
-    // var scope = 'user-read-private user-read-email';
     let scope = 'user-read-private user-read-email user-top-read user-read-playback-state user-modify-playback-state'
     res.redirect('https://accounts.spotify.com/authorize?' +
       querystring.stringify({
@@ -64,32 +48,6 @@ app.get('/login', function(req, res) {
         state: state
       }));
   });
-
-// app.get('/callback', function(req, res) {
-//     let code = req.query.code || null;
-//     let state = req.query.state || null;
-
-//     if (state === null) {
-//         res.redirect('/#' + 
-//             querystring.stringify({
-//                 error: 'state_mismatch'
-//             }));
-//     } else {
-//         let authOptions = {
-//             url: 'https://accounts.spotify.com/api/token',
-//             form: {
-//                 code: code,
-//                 redirect_uri: redirect_uri,
-//                 grant_type: 'authorization_code'
-//             },
-//             headers: {
-//                 'content-type': 'application/x-www-form-urlencoded',
-//                 'Authorization': 'Basic ' + (new Buffer.from(client_id + ':' + client_secret).toString('base64'))
-//             },
-//             json: true
-//         }
-//     }
-// })
 
 app.get('/callback', function(req, res) {
 
@@ -183,11 +141,6 @@ app.get('/callback', function(req, res) {
       }
     });
   });
-
-app.get('/test', (req, res) => {
-    console.log('test');
-    res.json({ message: 'req' })
-})
 
 const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));

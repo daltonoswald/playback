@@ -10,6 +10,16 @@
     min-width: 256px;
 }
 
+.album-details-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.album-details-spotify-icon {
+    height: 36px;
+}
+
 .album-tracklist {
     width: 75%;
     display: flex;

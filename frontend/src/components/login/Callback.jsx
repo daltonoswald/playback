@@ -7,6 +7,7 @@ import Nav from '../nav/Nav';
 export default function Callback() {
     const spotifyApi = new SpotifyWebApi();
     const navigate = useNavigate();
+    const [error, setError] = useState(null)
 
     const getTokenFromUrl = () => {
       return window.location.hash
@@ -28,10 +29,14 @@ export default function Callback() {
 
       if (spotifyToken) {
         spotifyApi.setAccessToken(spotifyToken)
-        spotifyApi.getMe().then((user) => {
-          // console.log(user);
-          navigate('/home');
-        })
+        spotifyApi.getMe().then(
+          function(user) {
+            navigate('/home')
+          },
+          function (err) {
+            setError(err.response)
+          }
+        )
       }
     })
 
@@ -50,7 +55,13 @@ export default function Callback() {
               <Link to='/' className='nav-right' onClick={logout}>Logout</Link>
         </div>
           <div className='content'>
-              Redirecting you back to the app...
+              <p>Redirecting you back to the app...</p>
+              {error && (
+                <div className='error'>
+                  <p>{error}</p>
+                  <p>If this error persists and looks incorrect please contact the site owner.</p>
+                </div>
+              )}
           </div>
           <Footer />
         </>
