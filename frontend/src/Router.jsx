@@ -8,6 +8,7 @@ import Artist from './components/artist/Artist';
 import Album from './components/album/Album';
 import Search from './components/search/Search';
 import Error from './components/error/Error';
+import About from './components/about/About';
 
 export default function Router() {
     const router = createBrowserRouter([
@@ -43,6 +44,10 @@ export default function Router() {
         {
             path: '/album/:albumid',
             element: <Album />
+        },
+        {
+            path: '/about',
+            element: <About />
         }
     ])
     return <RouterProvider router={router} />

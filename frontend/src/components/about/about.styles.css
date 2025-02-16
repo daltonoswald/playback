@@ -1,0 +1,9 @@
+.information {
+    border: 2px solid white;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.information > h3 {
+    margin: 0;
+}

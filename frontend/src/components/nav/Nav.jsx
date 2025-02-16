@@ -22,7 +22,7 @@ export default function Nav() {
     return (
       <>
         <div className='nav'>
-          <Link to='/home' className='nav-left'>Statsify</Link>
+          <Link to='/home' className='nav-left'>Playback</Link>
           <div className='nav-middle'>
               <Link to='/my-top-tracks'>Top Tracks</Link>
               <Link to='/my-top-artists'>Top Artists</Link>

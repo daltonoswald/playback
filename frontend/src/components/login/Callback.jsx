@@ -49,7 +49,7 @@ export default function Callback() {
       return (
         <>
           <div className='nav'>
-          <Link to='/home' className='nav-left'>Statsify</Link>
+          <Link to='/home' className='nav-left'>Playback</Link>
           <div className='nav-middle'>
           </div>
               <Link to='/' className='nav-right' onClick={logout}>Logout</Link>
