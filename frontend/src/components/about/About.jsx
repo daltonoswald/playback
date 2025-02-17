@@ -1,16 +1,39 @@
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Footer from '../nav/Footer';
 import './about.styles.css'
+import Nav from '../nav/Nav';
 
 export default function About() {
+  const spotifyToken = localStorage.getItem('spotifyToken');
+  const navigate = useNavigate();
 
+  const logout = () => {
+    localStorage.removeItem('spotifyToken');
+    localStorage.removeItem('spotifyRefreshToken');
+    navigate('/')
+  }
 
   return (
     <>
-        <div className='nav'>
+      <div className='nav'>
+      {!spotifyToken && (
+        <>
+            <Link to='/home' className='nav-left'>Playback</Link>
+            <a href='https://playback-production.up.railway.app' className='nav-right'>Login With Spotify</a>
+        </>
+      )}
+      {spotifyToken && (
+        <>
           <Link to='/home' className='nav-left'>Playback</Link>
-          <a href='https://playback-production.up.railway.app' className='nav-right'>Login With Spotify</a>
-        </div>
+          <div className='nav-middle'>
+          <Link to='/my-top-tracks'>Top Tracks</Link>
+            <Link to='/my-top-artists'>Top Artists</Link>
+            <Link to='/search'>Search</Link>
+          </div>
+          <Link to='/' className='nav-right' onClick={logout}>Logout</Link>
+        </>
+      )}
+      </div>
           <div className='content'>
             <h1>About Playback</h1>
             <div className='about'>
@@ -25,7 +48,7 @@ export default function About() {
                 </div>
             </div>
           </div>
-          <Footer />
+        <Footer />
     </>
   )
 }

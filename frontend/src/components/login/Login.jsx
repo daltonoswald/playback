@@ -17,7 +17,8 @@ export default function Login() {
   return (
     <>
         <div className='nav'>
-          <Link to='/home' className='nav-left'>Playback</Link>
+        <Link to='/home' className='nav-left'>Playback</Link>
+        <a href='https://playback-production.up.railway.app' className='nav-right'>Login With Spotify</a>
         </div>
           <div className='content'>
             <div className='welcome-message'>
