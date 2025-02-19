@@ -9,6 +9,8 @@ import Footer from '../nav/Footer';
 
 export default function Search () {
     const spotifyToken = localStorage.getItem('spotifyToken')
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     const [tracks, setTracks] = useState(null)
     const [artists, setArtists] = useState(null)
     const [albums, setAlbums] = useState(null);
@@ -24,15 +26,45 @@ export default function Search () {
     const handleSearch = (e) => {
         e.preventDefault();
         spotifyApi.setAccessToken(spotifyToken);
-        spotifyApi.searchTracks(e.target.search.value, { limit: 9 }).then((tracks) => {
-            setTracks(tracks.tracks.items)
-        })
-        spotifyApi.searchArtists(e.target.search.value, { limit: 6 }).then((artists) => {
-            setArtists(artists.artists.items)
-        })
-        spotifyApi.searchAlbums(e.target.search.value, { limit: 6 }).then((albums) => {
-            setAlbums(albums.albums.items)
-        })
+        // spotifyApi.searchTracks(e.target.search.value, { limit: 9 }).then((tracks) => {
+        //     setTracks(tracks.tracks.items)
+        // })
+        spotifyApi.searchTracks(e.target.search.value, { limit: 9 }).then(
+            function(tracks) {
+                setTracks(tracks.tracks.items)
+            },
+            function(err) {
+                console.log('hi tracks')
+                console.error(err.response)
+                setError(err.response)
+            }
+        )
+        // spotifyApi.searchArtists(e.target.search.value, { limit: 6 }).then((artists) => {
+        //     setArtists(artists.artists.items)
+        // })
+        spotifyApi.searchArtists(e.target.search.value, { limit: 6 }).then(
+            function(artists) {
+                setArtists(artists.artists.items)
+            },
+            function(err) {
+                console.error(err.response)
+                setError(err.response)
+            }
+        )
+        // spotifyApi.searchAlbums(e.target.search.value, { limit: 6 }).then((albums) => {
+        //     setAlbums(albums.albums.items)
+        // })
+        spotifyApi.searchAlbums(e.target.search.value, { limit: 6 }).then(
+            function(albums) {
+                setAlbums(albums.albums.items)
+                setIsLoading(false)
+            },
+            function(err) {
+                console.error(err.response)
+                setError(err.response)
+                setIsLoading(false)
+            }
+        )
     }
 
     const handlePlayTrack = (e) => {
@@ -56,7 +88,7 @@ export default function Search () {
                         <input type='text' id='search' name='search' placeholder='What are you looking for?' />
                         {/* <button className='search-button' type='submit'>Search</button> */}
                     </form>
-                {(tracks && artists && albums) && (
+                {(tracks && artists && albums && !isLoading && !error) && (
                     <>
                         <div className='search-tracks'>
                             <h1>Tracks</h1>
@@ -133,6 +165,14 @@ export default function Search () {
                         </div>
                     </>
                 )}
+                {(spotifyToken && !isLoading && error && (
+                    <div className='content'>
+                        <div className='error'>
+                            <p>{error}</p>
+                            <p>If this error persists and looks incorrect please contact the site owner.</p>
+                        </div>
+                    </div>
+                ))}
             </div>
             <Footer />
         </>

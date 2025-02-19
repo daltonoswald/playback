@@ -10,6 +10,8 @@ import Footer from '../nav/Footer';
 export default function TopTracks() {
     const spotifyToken = localStorage.getItem('spotifyToken');
     const [topTracks, setTopTracks] = useState(null);
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true)
     const [term, setTerm] = useState('medium');
     const navigate = useNavigate();
     const spotifyApi = new SpotifyWebApi();
@@ -25,15 +27,38 @@ export default function TopTracks() {
     const handleGetTopTracks = (e) => {
         if (e) {
             spotifyApi.setAccessToken(spotifyToken);
-            spotifyApi.getMyTopTracks({time_range: (e.target.id + '_term')}).then((tracks) => {
-                setTerm(e.target.id)
-                setTopTracks(tracks.items)
-            })
+            // spotifyApi.getMyTopTracks({time_range: (e.target.id + '_term')}).then((tracks) => {
+            //     setTerm(e.target.id)
+            //     setTopTracks(tracks.items)
+            // })
+            spotifyApi.getMyTopTracks({time_range: (e.target.id + '_term')}).then(
+                function(tracks) {
+                    setIsLoading(false)
+                    setTerm(e.target.id)
+                    setTopTracks(tracks.items)
+                },
+                function(err) {
+                    console.error(err.response)
+                    setError(err.response)
+                    setIsLoading(false);
+                }
+            )
         } else {
             spotifyApi.setAccessToken(spotifyToken);
-            spotifyApi.getMyTopTracks({time_range: 'medium_term'}).then((tracks) => {
-                setTopTracks(tracks.items)
-            })
+            // spotifyApi.getMyTopTracks({time_range: 'medium_term'}).then((tracks) => {
+            //     setTopTracks(tracks.items)
+            // })
+            spotifyApi.getMyTopTracks({time_range: 'medium_term'}).then(
+                function(tracks) {
+                    setIsLoading(false)
+                    setTopTracks(tracks.items)
+                },
+                function(err) {
+                    console.error(err.response)
+                    setError(err.response)
+                    setIsLoading(false);
+                }
+            )
         }
     }
 
@@ -49,6 +74,7 @@ export default function TopTracks() {
       return (
         <>
         <Nav />
+        {(spotifyToken && !isLoading && !error) && (
             <div className='content'>
                 <div className='term-buttons'>
                     <button id="short" onClick={handleGetTopTracks} className={(term === 'short' ? 'active' : '')}>Short</button>
@@ -78,6 +104,15 @@ export default function TopTracks() {
                     )}
                 </div>
             </div>
+        )}
+        {(spotifyToken && !isLoading && error && (
+            <div className='content'>
+                <div className='error'>
+                    <p>{error}</p>
+                    <p>If this error persists and looks incorrect please contact the site owner.</p>
+                </div>
+            </div>
+        ))}
             <Footer />
         </>
       )

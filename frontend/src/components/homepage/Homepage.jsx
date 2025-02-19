@@ -10,6 +10,7 @@ import personIcon from '../../assets/icons/person.svg'
 function App() {
   const spotifyToken = localStorage.getItem('spotifyToken');
   const [user, setUser] = useState({});
+  const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true)
   const spotifyApi = new SpotifyWebApi();
   const navigate = useNavigate();
@@ -17,32 +18,26 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem('spotifyToken')) {
       spotifyApi.setAccessToken(spotifyToken)
-      // spotifyApi.getMe().then((user) => {
-      //   setUser(user)
-      //   setIsLoading(false)
-      // })
       spotifyApi.getMe().then(
         function(user) {
           setUser(user);
           setIsLoading(false);
         },
         function (err) {
-          console.error(err)
-          localStorage.removeItem('spotifyToken');
-          localStorage.removeItem('spotifyRefreshToken');
+          console.error(err.response)
+          setError(err.response)
+          setIsLoading(false)
+          // localStorage.removeItem('spotifyToken');
+          // localStorage.removeItem('spotifyRefreshToken');
         }
       )
-    } else {
-      localStorage.removeItem('spotifyToken');
-      localStorage.removeItem('spotifyRefreshToken');
-      navigate('/')
     }
   },[spotifyToken])
 
 
   return (
     <>
-        {(spotifyToken && user && !isLoading) && (
+        {(spotifyToken && user && !isLoading && !error) && (
           <>
             <Nav />
             <div className='content'>
@@ -61,6 +56,18 @@ function App() {
                 <Link to='/search'>Search</Link>
               </div>
             </div>
+            <Footer />
+          </>
+        )}
+        {(spotifyToken && !isLoading && error) && (
+          <>
+            <Nav />
+              <div className='content'>
+                <div className='error'>
+                    <p>{error}</p>
+                    <p>If this error persists and looks incorrect please contact the site owner.</p>
+                </div>
+              </div>
             <Footer />
           </>
         )}
