@@ -6,6 +6,7 @@ import './search.styles.css';
 import personIcon from '../../assets/icons/person.svg'
 import albumIcon from '../../assets/icons/album.svg'
 import Footer from '../nav/Footer';
+import ErrorModal from '../error/ErrorModal';
 
 export default function Search () {
     const spotifyToken = localStorage.getItem('spotifyToken')
@@ -34,7 +35,6 @@ export default function Search () {
                 setTracks(tracks.tracks.items)
             },
             function(err) {
-                console.log('hi tracks')
                 console.error(err.response)
                 setError(err.response)
             }
@@ -167,10 +167,7 @@ export default function Search () {
                 )}
                 {(spotifyToken && !isLoading && error && (
                     <div className='content'>
-                        <div className='error'>
-                            <p>{error}</p>
-                            <p>If this error persists and looks incorrect please contact the site owner.</p>
-                        </div>
+                        <ErrorModal error={error} />
                     </div>
                 ))}
             </div>

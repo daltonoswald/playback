@@ -9,6 +9,7 @@ import Tracklist from '../tracklist/Tracklist';
 import albumIcon from '../../assets/icons/album.svg'
 import spotifyIcon from '../../assets/icons/spotify.png'
 import './album.styles.css'
+import ErrorModal from '../error/ErrorModal';
 
 export default function Album() {
     const spotifyToken = localStorage.getItem('spotifyToken')
@@ -28,7 +29,7 @@ export default function Album() {
             },
             function (err) {
                 console.error(err)
-                setError(err)
+                setError(err.response)
             }
         )
     },[spotifyToken, params])
@@ -75,6 +76,7 @@ export default function Album() {
         {(isLoading && error && album === '') && (
             <div className='content'>
                 <h1>Album not found.</h1>
+                <ErrorModal error={error} />
             </div>
         )}
         <Footer />

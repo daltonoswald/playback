@@ -9,6 +9,7 @@ import albumIcon from '../../assets/icons/album.svg'
 import playIcon from '../../assets/icons/play-icon.svg'
 import spotifyIcon from '../../assets/icons/spotify.png'
 import './artist.styles.css';
+import ErrorModal from '../error/ErrorModal';
 
 export default function Artist() {
     const [isLoading, setIsLoading] = useState(true);
@@ -39,7 +40,7 @@ export default function Artist() {
             },
             function (err) {
                 console.error(err)
-                setError(err);
+                setError(err.response);
             }
         ))
         .then(spotifyApi.getArtistAlbums(params.artistid).then(
@@ -56,7 +57,7 @@ export default function Artist() {
             },
             function (err) {
                 console.error(err)
-                setError(err);
+                setError(err.response);
             }
         ))
     },[params])
@@ -92,7 +93,7 @@ export default function Artist() {
                 <h1>Loading...</h1>
             </div>
         )}
-        {!isLoading && artist && (
+        {!isLoading && artist && !error && (
         <div className='content'>
             <div className='artist-details'>
                 {artist.images.length >= 1 && (
@@ -131,6 +132,9 @@ export default function Artist() {
             </div>
         </div>
         )}
+        {(!isLoading && artist && error && (
+            <ErrorModal />
+        ))}
         <Footer />
         </>
     )

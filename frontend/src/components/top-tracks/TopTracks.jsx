@@ -6,6 +6,7 @@ import Nav from '../nav/Nav';
 import playIcon from '../../assets/icons/play-icon.svg'
 import albumIcon from '../../assets/icons/album.svg'
 import Footer from '../nav/Footer';
+import ErrorModal from '../error/ErrorModal';
 
 export default function TopTracks() {
     const spotifyToken = localStorage.getItem('spotifyToken');
@@ -107,10 +108,7 @@ export default function TopTracks() {
         )}
         {(spotifyToken && !isLoading && error && (
             <div className='content'>
-                <div className='error'>
-                    <p>{error}</p>
-                    <p>If this error persists and looks incorrect please contact the site owner.</p>
-                </div>
+                <ErrorModal error={error} />
             </div>
         ))}
             <Footer />

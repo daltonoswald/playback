@@ -5,3 +5,15 @@
     justify-content: center;
     flex-direction: column;
 }
+
+.error {
+    border: 2px solid red;
+    background-color: salmon;
+    color: black;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.error-logout {
+    color: black !important;
+}

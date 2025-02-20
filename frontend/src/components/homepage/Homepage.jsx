@@ -6,6 +6,7 @@ import Footer from '../nav/Footer';
 import Nav from '../nav/Nav'
 import './homepage.styles.css'
 import personIcon from '../../assets/icons/person.svg'
+import ErrorModal from '../error/ErrorModal';
 
 function App() {
   const spotifyToken = localStorage.getItem('spotifyToken');
@@ -63,10 +64,7 @@ function App() {
           <>
             <Nav />
               <div className='content'>
-                <div className='error'>
-                    <p>{error}</p>
-                    <p>If this error persists and looks incorrect please contact the site owner.</p>
-                </div>
+                <ErrorModal error={error} />
               </div>
             <Footer />
           </>
