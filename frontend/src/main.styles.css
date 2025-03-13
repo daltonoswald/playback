@@ -127,6 +127,11 @@ button:active {
     transform: rotateZ(360deg);
 }
 
+hr {
+    width: 50%;
+    margin: 2vh 0;
+}
+
 @media only screen and (max-width: 600px) {
     .content {
         width: 90vw;

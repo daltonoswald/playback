@@ -20,15 +20,18 @@
     align-items: center;
 }
 
-.artist-details-image {
-    height: 256px;
+.artist-details-image-container {
+    /* height: 256px; */
     width: 256px;
-    min-width: 256px;
     display: flex;
     justify-content: center;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+.artist-details-image {
+    overflow: auto;
 }
 
 .artist-details-name {

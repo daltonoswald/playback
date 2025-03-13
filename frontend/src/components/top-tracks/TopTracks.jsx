@@ -86,14 +86,14 @@ export default function TopTracks() {
                     {topTracks && (
                         topTracks.map((track) => (
                             <div key={track.id} className='track' id={track.id}>
-                                <div className='album-image-container' id={track.album.id} onClick={navigateToAlbum}>
+                                <Link to={`/album/${track.album.id}`} className='album-image-container' id={track.album.id} onClick={navigateToAlbum}>
                                     {track.album.images.length >= 1 && (
                                         <img src={track.album.images[0].url} className='album-image' id={track.album.id} />   
                                     )}
                                     {track.album.images.length === 0 && (
                                         <img src={albumIcon} className='album-image' id={track.album.id} />   
                                     )}
-                                </div>
+                                </Link>
                                 <div className='track-info'>
                                     {/* <a href={track.uri} className='track-name'>{track.name}</a> */}
                                     <Link to={`/album/${track.album.id}`} className='track-name'>{track.name}</Link>

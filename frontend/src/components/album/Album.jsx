@@ -46,13 +46,14 @@ export default function Album() {
             <div className='content'>
                 <div className='album-details'>
                     <div className='album-details-top'>
-                        {album.images.length >= 0 && (
-                           <img src={album.images[0].url} className='album-details-image' /> 
-                        )}
-                        {album.images.length === 0 && (
-                           <img src={albumIcon} className='album-details-image' /> 
-                        )}
-                        
+                        <div className='album-details-image-container'>
+                            {album.images.length >= 0 && (
+                            <img src={album.images[0].url} className='album-details-image' /> 
+                            )}
+                            {album.images.length === 0 && (
+                            <img src={albumIcon} className='album-details-image' /> 
+                            )}
+                        </div>
                         <div className='album-details-name'>
                             <a href={album.uri}><img src={spotifyIcon} className='album-details-spotify-icon' /></a>
                             <h1>{album.name}</h1>
@@ -68,6 +69,7 @@ export default function Album() {
                         <div className='album-details-length'>{album.total_tracks} Songs</div>
                     </div>
                 </div>
+                <hr />
                 <div className='album-tracklist'>
                     <Tracklist tracks={album.tracks.items} />
                 </div>

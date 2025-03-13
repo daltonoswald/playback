@@ -96,18 +96,21 @@ export default function Artist() {
         {!isLoading && artist && !error && (
         <div className='content'>
             <div className='artist-details'>
-                {artist.images.length >= 1 && (
-                    <div className='artist-details-image' id={artist.id} style={{backgroundImage: 'url(' + artist.images[0].url + ')',}} />
-                )}
-                {artist.images.length === 0 && (
-                    <img src={personIcon} className='artist-details-image' />
-                )}
+                <div className='artist-details-image-container'>
+                    {artist.images.length >= 1 && (
+                        <img src={artist.images[0].url} className='artist-details-image' id={artist.id} />
+                    )}
+                    {artist.images.length === 0 && (
+                        <img src={personIcon} className='artist-details-image' />
+                    )}
+                </div>
                 <div className='artist-details-name'>
                     <a href={artist.uri}><img src={spotifyIcon} className='artist-details-spotify-icon' /></a>
                     <h1>{artist.name}</h1>
                 </div>
             </div>
             <Discog discography={discography} albums={albums} />
+            <hr />
             <div className='artist-tracks'>
                 {topTracks && (
                     topTracks.map((track) => (

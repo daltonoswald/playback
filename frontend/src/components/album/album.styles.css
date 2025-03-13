@@ -4,10 +4,17 @@
     align-items: center;
 }
 
-.album-deatils-image {
-    height: 256px;
-    width: 256px;
-    min-width: 256px;
+.album-details-image-container {
+    max-width: 256px;
+    display: flex;
+    justify-content: center;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.album-details-image {
+    overflow: auto;
 }
 
 .album-details-name {

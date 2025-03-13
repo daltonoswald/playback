@@ -88,9 +88,9 @@ export default function TopArtists() {
                                 <div key={artist.id} className='artist' id={artist.id}>
                                     {artist.images.length >= 1 && (
                                         // <div className='artist-image-container' id={artist.id} onClick={navigateToArtist} style={{backgroundImage: 'url(' + artist.images[0].url + ')',}} />
-                                        <div className='artist-image-container' id={artist.id} onClick={navigateToArtist}>
+                                        <Link to={`/artist/${artist.id}`} className='artist-image-container' id={artist.id} >
                                             <img src={artist.images[0].url} />
-                                        </div>
+                                        </Link>
                                     )}
                                     {artist.images.length === 0 && (
                                         <img className='artist-image-container' id={artist.id} onClick={navigateToArtist} src={personIcon} />
