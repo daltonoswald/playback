@@ -67,6 +67,7 @@
 
 .artist-album-image {
     height: 64px;
+    border-radius: 2px;
 }
 
 .artist-album-details {
@@ -92,6 +93,7 @@
 
 .artist-track-image {
     height: 48px;
+    border-radius: 2px;
 }
 
 .artist-track-details {

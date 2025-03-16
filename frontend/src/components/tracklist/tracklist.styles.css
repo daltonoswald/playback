@@ -4,6 +4,7 @@
     align-items: center;
     width: 75%;
     padding: 2px;
+    gap: 4px;
 }
 
 .tracklist-title {

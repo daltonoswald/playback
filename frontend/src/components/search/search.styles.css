@@ -48,12 +48,25 @@
 
 .search-result-image {
     width: 48px;
+    border-radius: 2px;
+}
+
+.search-artist-image-container {
+    height: 48px;
+    width: 48px;
+    min-width: 48px;
+    display: flex;
+    justify-content: center;
+    border-radius: 2px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color:black;
 }
 
 .search-artist-image {
     height: 48px;
-    width: 48px;
-    min-width: 48px;
+    border-radius: 2px;
     display: flex;
     justify-content: center;
     background-position: center;

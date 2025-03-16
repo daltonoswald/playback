@@ -119,10 +119,10 @@ export default function Search () {
                                 {artists && (
                                     artists.map(artist => (
                                         <div className='artist-result' key={artist.id} id={artist.id} onDoubleClick={handlePlayArtist}>
-                                            <Link to={`/artist/${artist.id}`}>
+                                            <Link to={`/artist/${artist.id}`} className='search-artist-image-container'>
                                                 {artist.images.length >= 1 && (
-                                                        // <img src={artist.images[0].url} className='search-result-image' />
-                                                        <div className='search-result-image search-artist-image' style={{backgroundImage: 'url(' + artist.images[0].url + ')'}} />
+                                                        <img src={artist.images[0].url} className='search-artist-image' />
+                                                        // <div className='search-result-image search-artist-image' style={{backgroundImage: 'url(' + artist.images[0].url + ')'}} />
                                                 )}
                                                 {artist.images.length === 0 && (
                                                         <img src={personIcon} className='search-result-image' />

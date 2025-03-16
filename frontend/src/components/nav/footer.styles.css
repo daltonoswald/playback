@@ -43,3 +43,10 @@
 .link-icon:hover {
     transform: translateY(-2px); 
 }
+
+@media only screen and (max-width: 600px) {
+    .footer-text > p,
+    .footer-links > a {
+        font-size: 12px;
+    }
+}
