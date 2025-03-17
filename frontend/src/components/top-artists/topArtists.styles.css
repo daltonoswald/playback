@@ -53,6 +53,16 @@
     /* width: 100%; */
 }
 
+.artist-info-icons {
+    display: flex;
+    gap: 4px;
+    margin: 4px;
+}
+
+.play-spotify-icon {
+    height: 36px;
+}
+
 @media only screen and (max-width: 600px) {
     .artists-container {
         grid-template-columns: 1fr 1fr;

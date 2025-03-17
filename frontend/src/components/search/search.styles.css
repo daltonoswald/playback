@@ -46,6 +46,15 @@
     gap: 4px;
 }
 
+.result-spotify-icon {
+    margin-left: auto;
+    align-content: center;
+}
+
+.search-spotify-icon {
+    width: 24px;
+}
+
 .search-result-image {
     width: 48px;
     border-radius: 2px;

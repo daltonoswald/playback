@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import spotifyIcon from '../../assets/icons/spotify.png'
+import spotifyIcon from '../../assets/icons/spotify-full.png'
 import githubIcon from '../../assets/icons/github-original.svg'
 import linkedinIcon from '../../assets/icons/linkedin-plain.svg'
 import './footer.styles.css'
@@ -9,12 +9,12 @@ export default function Footer() {
 
     return (
         <div className="footer">
-            <a href='https://developer.spotify.com/documentation/web-api' className="footer-spotify">
-                <img className="icon" src={spotifyIcon} alt="Spotify Icon" />
+            <div className="footer-spotify">
+                <a href='https://open.spotify.com'><img className="icon" src={spotifyIcon} alt="Spotify Icon" /></a>
                 <div className="footer-text">
-                    <p>Built using Spotify Web API</p>
+                    <a href='https://developer.spotify.com/documentation/web-api' >Built using Spotify Web API</a>
                 </div>
-            </a>
+            </div>
             <div className="footer-links">
                 <Link to='/about'>About</Link>
                 <a href='https://github.com/daltonoswald/playback' className="footer-github">

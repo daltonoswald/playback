@@ -5,6 +5,7 @@ import Nav from '../nav/Nav';
 import './search.styles.css';
 import personIcon from '../../assets/icons/person.svg'
 import albumIcon from '../../assets/icons/album.svg'
+import spotifyIcon from '../../assets/icons/spotify.png'
 import Footer from '../nav/Footer';
 import ErrorModal from '../error/ErrorModal';
 
@@ -100,7 +101,6 @@ export default function Search () {
                                                 <img src={track.album.images[0].url} className='search-result-image' />
                                             </Link>
                                             <div className='result-details'>
-                                                {/* <p>{track.name}</p> */}
                                                 <Link to={`/album/${track.album.id}`}>{track.name}</Link>
                                                 <div className='result-track-artists'>
                                                     {track.artists.map((artist, i, arr) => (
@@ -108,6 +108,9 @@ export default function Search () {
                                                     ))}
                                                 </div>
                                             </div>
+                                            <a href={track.uri} className='result-spotify-icon'>
+                                                <img src={spotifyIcon} className='search-spotify-icon'/>
+                                            </a>
                                         </div>
                                     ))
                                 )}
@@ -131,6 +134,9 @@ export default function Search () {
                                             <div className='result-details'>
                                                 <Link to={`/artist/${artist.id}`} key={artist.id}>{artist.name}</Link>
                                             </div>
+                                            <a href={artist.uri} className='result-spotify-icon'>
+                                                <img src={spotifyIcon} className='search-spotify-icon'/>
+                                            </a>
                                         </div>
                                     ))
                                 )}
@@ -158,6 +164,9 @@ export default function Search () {
                                                     ))}
                                                 </div>
                                             </div>
+                                            <a href={album.uri} className='result-spotify-icon'>
+                                                <img src={spotifyIcon} className='search-spotify-icon'/>
+                                            </a>
                                         </div>
                                     ))
                                 )}

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
 import playIcon from  '../../assets/icons/play-icon.svg'
+import spotifyIcon from '../../assets/icons/spotify.png'
 import albumIcon from  '../../assets/icons/album.svg'
 
 export default function Discog({discography, albums}) {
@@ -40,7 +41,10 @@ export default function Discog({discography, albums}) {
                         </Link>
                         <div className='artist-album-details'>
                             <Link to={`/album/${album.id}`} className='album-title'>{album.name}</Link>
-                            <img src={playIcon} className='play-icon' onClick={handlePlayAlbum} />
+                            <div className='artist-album-icons'>
+                                <img src={playIcon} className='play-icon' onClick={handlePlayAlbum} />
+                                <a href={album.uri} className='artist-details-spotify'><img src={spotifyIcon} className='artist-details-spotify-icon' /></a>
+                            </div>
                         </div>
                     </div>
                 ))

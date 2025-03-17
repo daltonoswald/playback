@@ -4,6 +4,7 @@ import SpotifyWebApi from 'spotify-web-api-js'
 import './tracks.styles.css'
 import Nav from '../nav/Nav';
 import playIcon from '../../assets/icons/play-icon.svg'
+import spotifyIcon from '../../assets/icons/spotify.png'
 import albumIcon from '../../assets/icons/album.svg'
 import Footer from '../nav/Footer';
 import ErrorModal from '../error/ErrorModal';
@@ -98,7 +99,10 @@ export default function TopTracks() {
                                     {/* <a href={track.uri} className='track-name'>{track.name}</a> */}
                                     <Link to={`/album/${track.album.id}`} className='track-name'>{track.name}</Link>
                                     <Link to={`/artist/${track.artists[0].id}`} className='track-artist'>{track.artists[0].name}</Link>
-                                    <img src={playIcon} className='play-icon' onClick={handlePlayTrack} />
+                                    <div className='artist-info-icons'>
+                                        <img src={playIcon} className='play-icon' onClick={handlePlayTrack} />
+                                        <a href={track.uri}><img src={spotifyIcon} className='play-spotify-icon'/></a>
+                                    </div>
                                 </div>
                             </div>
                         ))

@@ -14,6 +14,16 @@
     justify-content: space-around;
 }
 
+.artist-details-name > h1 {
+    margin: 0;
+}
+
+.artist-details-spotify {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
 .artist-details {
     display: flex;
     flex-direction: column;
@@ -36,8 +46,10 @@
 
 .artist-details-name {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 8px;
+    margin: 8px 0;
 }
 
 .artist-details-spotify-icon {
@@ -78,11 +90,18 @@
     justify-content: space-between;
 }
 
+.artist-album-icons,
+.artist-track-icons {
+    display: flex;
+    gap: 4px;
+}
+
 .artist-tracks {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     width: 75%;
     margin: 10px auto;
+    gap: 4px;
 }
 
 .artist-track {

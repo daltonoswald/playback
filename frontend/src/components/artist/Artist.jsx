@@ -26,7 +26,6 @@ export default function Artist() {
         spotifyApi.setAccessToken(spotifyToken);
         spotifyApi.getArtist(params.artistid).then(
             function(data) {
-                console.log(data);
                 setArtist(data)
             },
             function (err) {
@@ -105,8 +104,8 @@ export default function Artist() {
                     )}
                 </div>
                 <div className='artist-details-name'>
-                    <a href={artist.uri}><img src={spotifyIcon} className='artist-details-spotify-icon' /></a>
                     <h1>{artist.name}</h1>
+                    <a href={artist.uri} className='artist-details-spotify'><img src={spotifyIcon} className='artist-details-spotify-icon' />Listen on Spotify</a>
                 </div>
             </div>
             <Discog discography={discography} albums={albums} />
@@ -126,7 +125,10 @@ export default function Artist() {
                             <div className='artist-track-details' id={track.album.id}>
                                 {/* <div className='track-title'>{track.name}</div> */}
                                 <Link to={`/album/${track.album.id}`} className='track-title'>{track.name}</Link>
-                                <img src={playIcon} onClick={handlePlayTrack} className='play-icon' id={track.track_number} />
+                                <div className='artist-track-icons'>
+                                    <img src={playIcon} onClick={handlePlayTrack} className='play-icon' id={track.track_number} />
+                                    <a href={track.uri} className='artist-details-spotify'><img src={spotifyIcon} className='artist-details-spotify-icon' /></a>
+                                </div>
                             </div>
                         </div>
                     ))

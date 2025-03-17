@@ -8,6 +8,7 @@ import Footer from '../nav/Footer';
 import Tracklist from '../tracklist/Tracklist';
 import albumIcon from '../../assets/icons/album.svg'
 import spotifyIcon from '../../assets/icons/spotify.png'
+import spotifyFullIcon from '../../assets/icons/spotify-full.png'
 import './album.styles.css'
 import ErrorModal from '../error/ErrorModal';
 
@@ -55,8 +56,8 @@ export default function Album() {
                             )}
                         </div>
                         <div className='album-details-name'>
-                            <a href={album.uri}><img src={spotifyIcon} className='album-details-spotify-icon' /></a>
                             <h1>{album.name}</h1>
+                            <a href={album.uri} className='album-details-spotify'><img src={spotifyIcon} className='album-details-spotify-icon' />Listen on Spotify</a>
                         </div>
                     </div>
                     <div className='album-details-bottom'>
