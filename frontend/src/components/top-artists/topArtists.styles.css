@@ -41,6 +41,11 @@
 
 .artist-image-container > img {
     border-radius: 4px;
+    max-width: 128px;
+    max-height: 128px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
 }
 
 /* .artist-image-container,
@@ -77,6 +82,11 @@
 
     .artist-image-container > img {
         border-radius: 2px;
+        max-width: 20vw;
+        max-height: 20vw;
+        width: auto;
+        height: auto;
+        object-fit: contain;
     }
     
     .artist-name {

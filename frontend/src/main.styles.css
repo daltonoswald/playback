@@ -139,7 +139,8 @@ hr {
     .term-buttons {
         width: 100%;
     }
-    .play-icon {
+    .play-icon,
+    .play-spotify-icon {
         height: 24px;
     }
 }

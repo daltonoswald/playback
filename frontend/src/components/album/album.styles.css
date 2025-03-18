@@ -32,6 +32,7 @@
 
 .album-details-name > h1 {
     margin: 0;
+    overflow-wrap: anywhere;
 }
 
 .album-details-spotify {
@@ -52,6 +53,10 @@
 }
 
 @media only screen and (max-width: 600px) {
+    .album-details {
+        width: 80%;
+    }
+
     .album-details-image {
         width: 50%;
         border-radius: 2px;
@@ -69,4 +74,13 @@
         width: 100%;
         gap: 8px;
     }
+
+    .tracklist-duration,
+    .tracklist-index {
+        width: auto;
+    }
+
+    /* .tracklist-title {
+        width: 50%
+    } */
 }

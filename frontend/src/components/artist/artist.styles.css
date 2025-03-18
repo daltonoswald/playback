@@ -82,6 +82,10 @@
     border-radius: 2px;
 }
 
+.album-title {
+    overflow-wrap: anywhere;
+}
+
 .artist-album-details {
     display: flex;
     align-items: center;
@@ -150,5 +154,9 @@
     .artist-tracks {
         grid-template-columns: 1fr 1fr;
         width: 100%;
+    }
+
+    .artist-details-spotify-icon {
+        height: 24px;
     }
 }

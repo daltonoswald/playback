@@ -46,7 +46,8 @@
 
 @media only screen and (max-width: 600px) {
     .footer-text > p,
-    .footer-links > a {
+    .footer-links > a,
+    .footer-text > a {
         font-size: 12px;
     }
 }
