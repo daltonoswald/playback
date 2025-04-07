@@ -8,7 +8,7 @@ import './homepage.styles.css'
 import personIcon from '../../assets/icons/person.svg'
 import ErrorModal from '../error/ErrorModal';
 
-function App() {
+function Homepage() {
   const spotifyToken = localStorage.getItem('spotifyToken');
   const [user, setUser] = useState({});
   const [error, setError] = useState(null);
@@ -32,6 +32,12 @@ function App() {
           // localStorage.removeItem('spotifyRefreshToken');
         }
       )
+    }
+  },[spotifyToken])
+  
+  useEffect(() => {
+    if (!spotifyToken) {
+      navigate('/');
     }
   },[spotifyToken])
 
@@ -73,4 +79,4 @@ function App() {
   )
 }
 
-export default App
+export default Homepage

@@ -24,13 +24,13 @@ export default function Nav() {
       <div className='nav'>
       {!spotifyToken && (
         <>
-            <Link to='/home' className='nav-left'>Playback</Link>
+            <Link to='/' className='nav-left'>Playback</Link>
             <a href='https://playback-production.up.railway.app' className='nav-right'>Login With Spotify</a>
         </>
       )}
       {spotifyToken && (
         <>
-          <Link to='/home' className='nav-left'>Playback</Link>
+          <Link to='/' className='nav-left'>Playback</Link>
           <div className='nav-middle'>
           <Link to='/my-top-tracks'>Top Tracks</Link>
             <Link to='/my-top-artists'>Top Artists</Link>
